@@ -7,6 +7,15 @@
     "devDependencies": {
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
+        "postcss": "^8.1.14",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.6",
+        "add": "^2.0.6",
+        "admin-lte": "^3.2",
+        "bootstrap": "4.6",
+        "jquery": "^3.5.1"
     }
+
 }
