@@ -125,6 +125,9 @@
                 </table>
             </div>
             <!-- /.card-body -->
+            <div class="card-footer">
+                {{ $vacancies->links() }}
+            </div>
         </div>
 
     </section>
