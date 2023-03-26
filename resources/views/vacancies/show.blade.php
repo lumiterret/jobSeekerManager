@@ -48,9 +48,10 @@
                     <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
                         <div class="text-muted">
                             <h5 class="mt-5 text-muted">Компания</h5>
-                            {{--                                Ссылка на компанию --}}
+                            <b class="d-block"><a href="{{route('employers.show', [$vacancy->employer->id])}}">{{ $vacancy->employer->title }}</a></b>
+                            <div class="text-sm">@markdown{{ $vacancy->employer->description }}@endmarkdown</div>
                             <h5 class="mt-5 text-muted">Контакты</h5>
-                            {{--                                Список контактов --}}
+                            {{-- Список контактов --}}
                         </div>
                         <div class="text-center mt-5 mb-3">
                             <a href="{{ route('vacancies.edit', [$vacancy->id]) }}" class="btn btn-sm btn-primary">
@@ -60,7 +61,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /.card-body -->
         </div>
     </section>
 @endsection

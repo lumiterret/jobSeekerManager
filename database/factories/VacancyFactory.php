@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,9 +27,12 @@ class VacancyFactory extends Factory
         for($i = 0; $i <=3; $i++ ) {
             $description .= PHP_EOL . $this->faker->paragraph(random_int(2, 6)) . PHP_EOL;
         }
+
         return [
             'title' => $this->faker->sentence(3),
             'description' => $description,
+            'employer_id' => Employer::all()->random()->id,
+            'created_at' => $this->faker->dateTimeBetween('-1month', 'now'),
         ];
     }
 }

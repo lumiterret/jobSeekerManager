@@ -14,4 +14,9 @@ class Vacancy extends Model
         'title',
         'description',
     ];
+
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
 }

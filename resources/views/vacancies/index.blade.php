@@ -67,10 +67,10 @@
                             #
                         </th>
                         <th style="width: 25%">
-                            Компания
+                            Название вакансии
                         </th>
                         <th style="width: 25%">
-                            Название вакансии
+                            Компания
                         </th>
                         <th style="width: 8%" class="text-center">
                             Статус
@@ -84,9 +84,6 @@
                                         {{ $vacancy->id }}
                                     </td>
                                     <td>
-                                        Название компании
-                                    </td>
-                                    <td>
                                         <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
                                             {{ $vacancy->title }}
                                         </a>
@@ -94,6 +91,11 @@
                                         <small>
                                             {{ $vacancy->created_at }}
                                         </small>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('employers.show', [$vacancy->employer->id]) }}">
+                                        {{ $vacancy->employer->title }}
+                                        </a>
                                     </td>
                                     <td>
                                         <span class="badge badge-success">Офер</span>

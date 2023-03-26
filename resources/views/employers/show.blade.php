@@ -48,9 +48,22 @@
                     <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
                         <div class="text-muted">
                             <h5 class="mt-5 text-muted">Вакансии</h5>
-                            {{--                                Ссылка на компанию --}}
+                            @if($employer->vacancies->count())
+                                <ul>
+                                    @foreach($employer->vacancies as $vacancy)
+                                    <li>
+                                        <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
+                                            {{ $vacancy->title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                Нет активных вакансий
+                            @endif
+                            {{-- Ссылка на компанию --}}
                             <h5 class="mt-5 text-muted">Контакты</h5>
-                            {{--                                Список контактов --}}
+                            {{-- Список контактов --}}
                         </div>
                         <div class="text-center mt-5 mb-3">
                             <a href="{{ route('employers.edit', [$employer->id]) }}" class="btn btn-sm btn-primary">
