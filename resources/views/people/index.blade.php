@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Компании')
+@section('title', 'Контактные лица')
 
 
 @section('content')
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Компании</h1>
+                    <h1>Контактные лица</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item active"><a href="{{ route('home') }}">Обзор</a></li>
-                        <li class="breadcrumb-item active">Компании</li>
+                        <li class="breadcrumb-item active">Контактные лица</li>
                     </ol>
                 </div>
             </div>
@@ -35,10 +35,10 @@
             </div>
             <div class="card-body">
 
-                <a class="btn btn-primary btn-sm" href="{{ route('employers.create') }}">
+                <a class="btn btn-primary btn-sm" href="{{ route('people.create') }}">
                     <i class="fas fa-plus-circle">
                     </i>
-                    Добавить новую
+                    Добавить
                 </a>
             </div>
             <!-- /.card-body -->
@@ -46,7 +46,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Компании</h3>
+                <h3 class="card-title">Контактные лица</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -59,7 +59,7 @@
             </div>
             <div class="card-body p-0">
 
-                @if($employers->count())
+                @if($people->count())
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
@@ -67,7 +67,7 @@
                             #
                         </th>
                         <th style="width: 25%">
-                            Название компании
+                            Полное Имя
                         </th>
                         <th style="width: 8%" class="text-center">
                             Статус
@@ -75,18 +75,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($employers as $employer)
+                        @foreach($people as $person)
                             <tr>
                                 <td>
-                                    {{ $employer->id }}
+                                    {{ $person->id }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('employers.show', [$employer->id]) }}">
-                                        {{ $employer->title }}
+                                    <a href="{{ route('people.show', [$person->id]) }}">
+                                        {{ $person->full_name }}
                                     </a>
                                     <br>
                                     <small>
-                                        {{ $employer->created_at }}
+                                        {{ $person->created_at }}
                                     </small>
                                 </td>
                                 <td>
@@ -102,8 +102,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                @if($employers->count())
-                {{ $employers->links() }}
+                @if($people->count())
+                {{ $people->links() }}
                 @endif
             </div>
         </div>

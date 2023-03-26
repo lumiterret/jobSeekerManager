@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('people.index') }}" class="nav-link">
                     <i class="nav-icon far fa-address-book"></i>
                     <p>
                         Контактные лица

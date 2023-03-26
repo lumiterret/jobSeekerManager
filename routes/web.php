@@ -17,6 +17,11 @@ use \App\Http\Controllers;
 Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
 Route::resource('vacancies', Controllers\VacancyController::class)
-    ->parameters(['vacancies' => 'id']);
+    ->parameters(['vacancies' => 'id'])
+    ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
 Route::resource('employers', Controllers\EmployerController::class)
-    ->parameters(['employers' => 'id']);
+    ->parameters(['employers' => 'id'])
+    ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+Route::resource('people', Controllers\PersonController::class)
+    ->parameters(['people' => 'id'])
+    ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
