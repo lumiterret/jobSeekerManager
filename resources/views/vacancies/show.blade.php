@@ -40,7 +40,7 @@
                             <div class="col-12">
                                 <h4>Описание</h4>
                                 <div class="post" style="height: 80%">
-                                    {{ $vacancy->description }}
+                                    @markdown {{ $vacancy->description }} @endmarkdown
                                 </div>
                             </div>
                         </div>
