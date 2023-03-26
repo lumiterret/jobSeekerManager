@@ -9,30 +9,16 @@
             <img src="{{ Vite::asset('resources/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Admin</a>
+            <a href="#" class="d-block">Вася Ветров</a>
         </div>
     </div>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user-secret"></i>
-                        <p>
-                            Admin Panel
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a><ul class="nav nav-treeview">
-                        <li class="nav-item">
-
-                        </li>
-                    </ul>
-                </li>
             <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                <a href="{{ route('vacancies.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-business-time"></i>
                     <p>
-                        Dashboard
+                        Вакансии
                     </p>
                 </a>
             </li>
@@ -40,9 +26,30 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon far fa-building"></i>
                     <p>
-                        Employers
+                        Компании
                     </p>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-address-book"></i>
+                    <p>
+                        Контактные лица
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-user-secret"></i>
+                    <p>
+                        Администрирование
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a><ul class="nav nav-treeview">
+                    <li class="nav-item">
+
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>

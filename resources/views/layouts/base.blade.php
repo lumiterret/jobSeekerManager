@@ -6,10 +6,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
+    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 </head>
 <body class="sidebar-mini" style="height: auto">
 <div class="wrapper">
+    <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
+        <img class="animation__shake" src="{{ Vite::asset('resources/img/logo.png') }}" alt="AdminLTELogo" height="60" width="60" style="display: none;">
+    </div>
     @include('layouts.partials.header')
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         @include('layouts.partials.main-nav')
