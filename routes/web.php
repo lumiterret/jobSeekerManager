@@ -18,3 +18,5 @@ Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
 Route::resource('vacancies', Controllers\VacancyController::class)
     ->parameters(['vacancies' => 'id']);
+Route::resource('employers', Controllers\EmployerController::class)
+    ->parameters(['employers' => 'id']);

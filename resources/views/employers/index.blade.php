@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Вакансии</h1>
+                    <h1>Компании</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item active"><a href="{{ route('home') }}">Обзор</a></li>
-                        <li class="breadcrumb-item active">Вакансии</li>
+                        <li class="breadcrumb-item active">Компании</li>
                     </ol>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="card-body">
 
-                <a class="btn btn-primary btn-sm" href="{{ route('vacancies.create') }}">
+                <a class="btn btn-primary btn-sm" href="{{ route('employers.create') }}">
                     <i class="fas fa-plus-circle">
                     </i>
                     Добавить новую
@@ -46,7 +46,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Вакансии</h3>
+                <h3 class="card-title">Компании</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -59,7 +59,7 @@
             </div>
             <div class="card-body p-0">
 
-                @if($vacancies->count())
+                @if($employers->count())
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
@@ -67,10 +67,7 @@
                             #
                         </th>
                         <th style="width: 25%">
-                            Компания
-                        </th>
-                        <th style="width: 25%">
-                            Название вакансии
+                            Название компании
                         </th>
                         <th style="width: 8%" class="text-center">
                             Статус
@@ -78,28 +75,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                            @foreach($vacancies as $vacancy)
-                                <tr>
-                                    <td>
-                                        {{ $vacancy->id }}
-                                    </td>
-                                    <td>
-                                        Название компании
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
-                                            {{ $vacancy->title }}
-                                        </a>
-                                        <br>
-                                        <small>
-                                            {{ $vacancy->created_at }}
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">Офер</span>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($employers as $employer)
+                            <tr>
+                                <td>
+                                    {{ $employer->id }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('employers.show', [$employer->id]) }}">
+                                        {{ $employer->title }}
+                                    </a>
+                                    <br>
+                                    <small>
+                                        {{ $employer->created_at }}
+                                    </small>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success">Офер</span>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 @else
@@ -108,8 +102,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                @if($vacancies->count())
-                {{ $vacancies->links() }}
+                @if($employers->count())
+                {{ $employers->links() }}
                 @endif
             </div>
         </div>

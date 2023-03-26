@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Vacancy\StoreRequest;
-use App\Models\Vacancy;
+use App\Http\Requests\Employer\StoreRequest;
+use App\Models\Employer;
 use Illuminate\Http\Request;
 
-class VacancyController extends Controller
+class EmployerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $vacancies = Vacancy::paginate(8);
-        return view('vacancies.index',compact('vacancies'));
+        $employers = Employer::paginate(8);
+        return view('employers.index', compact('employers'));
     }
 
     /**
@@ -22,7 +22,7 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        return view('vacancies.create');
+        return view('employers.create');
     }
 
     /**
@@ -31,8 +31,8 @@ class VacancyController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $vacancy = Vacancy::create($data);
-        return redirect()->route('vacancies.show', [$vacancy->id]);
+        $employer = Employer::create($data);
+        return redirect()->route('employers.show', [$employer->id]);
     }
 
     /**
@@ -40,8 +40,8 @@ class VacancyController extends Controller
      */
     public function show($id)
     {
-        $vacancy = Vacancy::findOrFail($id);
-        return  view('vacancies.show', compact('vacancy'));
+        $employer = Employer::findOrFail($id);
+        return  view('employers.show', compact('employer'));
     }
 
     /**
@@ -49,8 +49,8 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        $vacancy = Vacancy::findOrFail($id);
-        return view('vacancies.edit', compact('vacancy'));
+        $employer = Employer::findOrFail($id);
+        return view('employers.edit', compact('employer'));
     }
 
     /**
@@ -59,8 +59,8 @@ class VacancyController extends Controller
     public function update(StoreRequest $request, $id)
     {
         $data = $request->validated();
-        $vacancy = Vacancy::findOrFail($id);
-        $vacancy->update($data);
-        return redirect()->route('vacancies.show', [$vacancy->id]);
+        $employer = Employer::findOrFail($id);
+        $employer->update($data);
+        return redirect()->route('employers.show', [$employer->id]);
     }
 }
