@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Vacancy\StoreRequest;
+use App\Models\Employer;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        return view('vacancies.create');
+        $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
+        return view('vacancies.create', compact('employers'));
     }
 
     /**
@@ -49,8 +51,9 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
+        $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
         $vacancy = Vacancy::findOrFail($id);
-        return view('vacancies.edit', compact('vacancy'));
+        return view('vacancies.edit', compact('vacancy', 'employers'));
     }
 
     /**
