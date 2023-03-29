@@ -33,7 +33,11 @@ class VacancyController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $vacancy = Vacancy::create($data);
+        $vacancy = new Vacancy();
+        $vacancy->title = $data['title'];
+        $vacancy->description = $data['description'];
+        $vacancy->employer_id = $data['employer_id'];
+        $vacancy->save();
         return redirect()->route('vacancies.show', [$vacancy->id]);
     }
 
@@ -63,7 +67,10 @@ class VacancyController extends Controller
     {
         $data = $request->validated();
         $vacancy = Vacancy::findOrFail($id);
-        $vacancy->update($data);
+        $vacancy->title = $data['title'];
+        $vacancy->description = $data['description'];
+        $vacancy->employer_id = $data['employer_id'];
+        $vacancy->save();
         return redirect()->route('vacancies.show', [$vacancy->id]);
     }
 }

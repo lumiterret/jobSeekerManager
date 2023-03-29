@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Vacancy;
 
+use App\Models\Employer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -23,15 +25,17 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|min:6',
-            'description' => 'required|min:20|max:65535'
+            'description' => 'required|min:20|max:65535',
+            'employer_id' => ['required', Rule::exists(Employer::class, 'id')]
         ];
     }
 
     public function attributes()
     {
         return [
-            'title' =>'Название',
-            'description' =>'Описание',
+            'title' =>'Название вакансии',
+            'description' =>'Описание вакансии',
+            'employer_id' =>'Компания',
         ];
     }
 }

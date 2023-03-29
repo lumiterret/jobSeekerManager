@@ -18,6 +18,15 @@
         @include('layouts.partials.main-nav')
     </aside>
     <main class="content-wrapper" style="min-height: 783px;">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @yield('content')
     </main>
 </div>
