@@ -17,7 +17,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         @include('layouts.partials.main-nav')
     </aside>
-    <main class="content-wrapper" style="min-height: 783px;">
+    <main class="content-wrapper" style="height: auto;">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>

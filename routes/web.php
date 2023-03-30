@@ -24,4 +24,4 @@ Route::resource('employers', Controllers\EmployerController::class)
     ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
 Route::resource('people', Controllers\PersonController::class)
     ->parameters(['people' => 'id'])
-    ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+    ->only(['index', 'show', 'create', 'store', 'update']);
