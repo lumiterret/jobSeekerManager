@@ -13,7 +13,7 @@ class EmployerController extends Controller
      */
     public function index()
     {
-        $employers = Employer::paginate(8);
+        $employers = Employer::all();
         return view('employers.index', compact('employers'));
     }
 

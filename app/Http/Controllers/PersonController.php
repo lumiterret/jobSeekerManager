@@ -13,7 +13,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $people = Person::paginate(8);
+        $people = Person::orderBy('created_at')->get();
         return view('people.index', compact('people'));
     }
 

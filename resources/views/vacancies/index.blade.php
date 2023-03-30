@@ -110,9 +110,9 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                @if($vacancies->count())
+               {{-- @if($vacancies->count())
                 {{ $vacancies->links() }}
-                @endif
+                @endif--}}
             </div>
         </div>
 

@@ -14,7 +14,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancy::orderByDesc('created_at')->paginate(8);
+        $vacancies = Vacancy::orderByDesc('created_at')->get();
         return view('vacancies.index',compact('vacancies'));
     }
 
