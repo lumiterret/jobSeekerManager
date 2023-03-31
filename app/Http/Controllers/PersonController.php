@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Person\StoreRequest;
+use App\Models\Contact;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,8 @@ class PersonController extends Controller
     public function show($id)
     {
         $person = Person::findOrFail($id);
-        return  view('people.show', compact('person'));
+        $contact = new Contact();
+        return  view('people.show', compact('person', 'contact'));
     }
 
     /**

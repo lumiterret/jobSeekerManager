@@ -18,7 +18,8 @@
     @error('f_name')
     <span class="error invalid-feedback">{{ $message }}</span>
     @enderror
-</div><div class="mb-3">
+</div>
+<div class="mb-3">
     <label class="col-form-label" for="l_name">
         Фамилия
         <span class="text-danger">*</span>

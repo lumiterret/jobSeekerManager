@@ -19,4 +19,9 @@ class Person extends Model
     {
         return "{$this->f_name} {$this->l_name}";
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class)->orderBy('type');
+    }
 }

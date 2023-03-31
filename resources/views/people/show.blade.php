@@ -13,7 +13,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Обзор</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('people.index') }}">Контактные лица</a></li>
-                        <li class="breadcrumb-item active">Просмотр</li>
+                        <li class="breadcrumb-item active">Просмотр профиля</li>
                     </ol>
                 </div>
             </div>
@@ -22,31 +22,40 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col">
                     {{-- Profile Image --}}
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
-                            <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle"
-                                     src="{{ Vite::asset('resources/img/avatar2.png') }}"
-                                     alt="User profile picture">
+                            <div class="row">
+                                <div class="col col-md-3">
+                                    <div class="text-center">
+                                        <img class="profile-user-img img-fluid img-circle"
+                                             src="{{ Vite::asset('resources/img/avatar2.png') }}"
+                                             alt="User profile picture">
+                                    </div>
+                                    <h3 class="profile-username text-center">
+                                        {{ $person->full_name }}
+                                    </h3>
+                                    <p class="text-muted text-center">
+                                        {{ $person->position }}
+                                    </p>
+                                </div>
+                                <div class="col col-md-9">
+                                    @include('contacts.index')
+                                </div>
                             </div>
-                            <h3 class="profile-username text-center">
-                                {{ $person->full_name }}
-                            </h3>
-                            <p class="text-muted text-center">
-                                {{ $person->position }}
-                            </p>
-                            @include('contacts.index')
                         </div>
                         {{-- /.card-body --}}
                     </div>
                     {{-- /.card --}}
-
+                </div>{{-- /.col --}}
+            </div>
+            <div class="row">
+                <div class="col">
                     {{-- Description --}}
                     <div class="card card-primary">
                         <div class="card-header text-center">
-                            Описание
+                            Заметка
                         </div> {{-- /.card-header --}}
                         <div class="card-body">
                             <p class="text-muted">
@@ -54,8 +63,10 @@
                             </p>
                         </div> {{-- /.card-body --}}
                     </div>{{-- /Description --}}
-                </div>{{-- /.col --}}
-                <div class="col-md-9">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
