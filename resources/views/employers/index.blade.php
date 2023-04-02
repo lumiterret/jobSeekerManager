@@ -35,11 +35,6 @@
             </div>
             <div class="card-body">
 
-                <a class="btn btn-primary btn-sm" href="{{ route('employers.create') }}">
-                    <i class="fas fa-plus-circle">
-                    </i>
-                    Добавить новую
-                </a>
             </div>
             <!-- /.card-body -->
         </div>
@@ -49,12 +44,11 @@
                 <h3 class="card-title">Компании</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
+                    <a class="btn btn-primary btn-sm" href="{{ route('employers.create') }}">
+                        <i class="fas fa-plus-circle">
+                        </i>
+                        Добавить новую
+                    </a>
                 </div>
             </div>
             <div class="card-body p-0">
