@@ -13,7 +13,15 @@ class EmployerController extends Controller
      */
     public function index()
     {
-        $employers = Employer::all();
+        $query = Employer::query();
+
+        $employers = $query->paginate(8);
+        foreach ($employers as $employer) {
+            $employer->activeVacancies = 'active';
+            if ($employer->vacancies()->whereStatus('active')->count() === 0) {
+                $employer->activeVacancies = 'no active';
+            }
+        }
         return view('employers.index', compact('employers'));
     }
 

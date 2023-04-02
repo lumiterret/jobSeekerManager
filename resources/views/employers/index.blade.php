@@ -84,7 +84,7 @@
                                     </small>
                                 </td>
                                 <td>
-                                    <span class="badge badge-success">Офер</span>
+                                    <x-employers.status-badge :active="$employer->activeVacancies"/>
                                 </td>
                             </tr>
                         @endforeach
@@ -96,9 +96,9 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                {{--@if($employers->count())
+                @if($employers->count())
                 {{ $employers->links() }}
-                @endif--}}
+                @endif
             </div>
         </div>
 
