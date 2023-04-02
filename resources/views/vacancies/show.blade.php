@@ -26,6 +26,13 @@
                     <h3 class="card-title">
                         {{$vacancy->title}} <x-vacancies.status-badge :status="$vacancy->status"/>
                     </h3>
+
+                    <div class="card-tools">
+                        <a href="{{ route('vacancies.edit', [$vacancy->id]) }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i>
+                            Редактировать
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body" style="display: block;">
                     <div class="row">
@@ -115,11 +122,6 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                            <div class="text-center mt-5 mb-3">
-                                <a href="{{ route('vacancies.edit', [$vacancy->id]) }}" class="btn btn-sm btn-primary">
-                                    Редактировать
-                                </a>
                             </div>
                         </div>
                     </div>
