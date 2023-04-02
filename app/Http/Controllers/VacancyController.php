@@ -47,7 +47,9 @@ class VacancyController extends Controller
         $vacancy = new Vacancy();
         $vacancy->title = $data['title'];
         $vacancy->description = $data['description'];
-        $vacancy->employer_id = $data['employer_id'];
+        if(isset($data['employer_id'])) {
+            $vacancy->employer_id = $data['employer_id'];
+        }
         $vacancy->save();
         return redirect()->route('vacancies.show', [$vacancy->id]);
     }
