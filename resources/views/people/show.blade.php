@@ -71,8 +71,12 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#vacancy" data-toggle="tab">Вакансии</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#edit-profile" data-toggle="tab">Редактировать</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#vacancy" data-toggle="tab">Вакансии</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#edit-profile" data-toggle="tab">Редактировать</a>
+                                </li>
                             </ul>
                         </div> {{-- /.card-header --}}
                         <div class="card-body">

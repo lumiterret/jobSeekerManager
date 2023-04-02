@@ -31,3 +31,5 @@ Route::resource('contact', Controllers\ContacController::class)
 
 Route::post('vacancies/{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
     ->name('vacancies.assign-people');
+Route::put('vacancies/status-change', [Controllers\VacancyController::class, 'changeStatus'])
+    ->name('vacancies.status-change');

@@ -10,6 +10,11 @@ class Vacancy extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_DONE = 'done';
+    public const STATUS_ARCHIVE = 'archive';
+
     protected $fillable = [
         'title',
         'description',
@@ -23,5 +28,15 @@ class Vacancy extends Model
     public function people()
     {
         return $this->belongsToMany(Person::class);
+    }
+
+    public function statuses()
+    {
+        return [
+            self::STATUS_DRAFT,
+            self::STATUS_ACTIVE,
+            self::STATUS_DONE,
+            self::STATUS_ARCHIVE,
+        ];
     }
 }

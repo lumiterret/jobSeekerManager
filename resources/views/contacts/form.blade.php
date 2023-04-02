@@ -10,7 +10,7 @@
             name="type"
             id="type"
             required="required"
-            class="form-select form-control-sm @error('f_name')is-invalid @enderror">
+            class="form-control @error('f_name')is-invalid @enderror">
             <option value=""></option>
             @foreach ($contact->types() as $type)
                 <option value="{{ $type }}">

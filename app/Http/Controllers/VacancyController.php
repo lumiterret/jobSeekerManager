@@ -13,10 +13,20 @@ class VacancyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vacancies = Vacancy::orderByDesc('created_at')->get();
-        return view('vacancies.index',compact('vacancies'));
+        $vacancy = new Vacancy();
+        $statuses = $vacancy->statuses();
+        $query = Vacancy::orderByDesc('created_at');
+        $status = ['active'];
+
+        if ($request->get('status')) {
+            $status = array_merge($request->get('status'));
+        }
+        $query->whereIn('status', $status);
+        $vacancies = $query->get();
+
+        return view('vacancies.index',compact('vacancies', 'statuses'));
     }
 
     /**
@@ -84,6 +94,19 @@ class VacancyController extends Controller
         } catch (\Throwable) {
 
         }
+        return redirect()->back();
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $validated = $request->validate([
+            'vacancy_id' => 'required|int',
+            'status' => 'required|string'
+        ]);
+        $vacancy = Vacancy::findOrFail($validated['vacancy_id']);
+        $vacancy->status = $validated['status'];
+        $vacancy->save();
+
         return redirect()->back();
     }
 }
