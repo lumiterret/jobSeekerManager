@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Employer;
+use App\Models\Person;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
@@ -56,8 +57,9 @@ class VacancyController extends Controller
     public function edit($id)
     {
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
+        $people = Person::orderBy('f_name')->get();
         $vacancy = Vacancy::findOrFail($id);
-        return view('vacancies.edit', compact('vacancy', 'employers'));
+        return view('vacancies.edit', compact('vacancy', 'employers', 'people'));
     }
 
     /**
@@ -72,5 +74,16 @@ class VacancyController extends Controller
         $vacancy->employer_id = $data['employer_id'];
         $vacancy->save();
         return redirect()->route('vacancies.show', [$vacancy->id]);
+    }
+
+    public function assignPeople(Request $request, $id)
+    {
+        $vacancy = Vacancy::findOrFail($id);
+        try{
+            $vacancy->people()->sync($request['people']);
+        } catch (\Throwable) {
+
+        }
+        return redirect()->back();
     }
 }

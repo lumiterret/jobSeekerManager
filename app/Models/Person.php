@@ -24,4 +24,9 @@ class Person extends Model
     {
         return $this->hasMany(Contact::class)->orderBy('type');
     }
+
+    public function vacancies()
+    {
+        return $this->belongsToMany(Vacancy::class);
+    }
 }

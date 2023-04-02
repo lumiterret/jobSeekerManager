@@ -28,3 +28,6 @@ Route::resource('people', Controllers\PersonController::class)
 Route::resource('contact', Controllers\ContacController::class)
     ->parameters(['contact' => 'id'])
     ->only(['store', 'destroy']);
+
+Route::post('vacancies/{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
+    ->name('vacancies.assign-people');

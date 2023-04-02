@@ -76,5 +76,4 @@
         @endforeach
     @endif
 </ul>
-@include('contacts.form')
 {{--<a href="#" class="btn btn-primary btn-block"><b>Добавить</b></a>--}}

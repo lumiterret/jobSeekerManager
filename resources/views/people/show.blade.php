@@ -42,6 +42,7 @@
                                 </div>
                                 <div class="col col-md-9">
                                     @include('contacts.index')
+                                    @include('contacts.form')
                                 </div>
                             </div>
                         </div>

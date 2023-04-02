@@ -19,4 +19,9 @@ class Vacancy extends Model
     {
         return $this->belongsTo(Employer::class);
     }
+
+    public function people()
+    {
+        return $this->belongsToMany(Person::class);
+    }
 }

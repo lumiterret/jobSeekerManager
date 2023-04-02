@@ -40,7 +40,7 @@
                             <div class="col-12">
                                 <h4>Описание</h4>
                                 <div class="post" style="height: 80%">
-                                    @markdown {{ $vacancy->description }} @endmarkdown
+                                    @markdown{{ $vacancy->description }}@endmarkdown
                                 </div>
                             </div>
                         </div>
@@ -49,9 +49,20 @@
                         <div class="text-muted">
                             <h5 class="mt-5 text-muted">Компания</h5>
                             <b class="d-block"><a href="{{route('employers.show', [$vacancy->employer->id])}}">{{ $vacancy->employer->title }}</a></b>
-                            <div class="text-sm">@markdown{{ $vacancy->employer->description }}@endmarkdown</div>
                             <h5 class="mt-5 text-muted">Контакты</h5>
+                            @if(count($vacancy->people))
+                                <ul>
+                                    @foreach($vacancy->people as $person)
+                                    <li>
+                                        <a href="{{ route('people.show', [$person->id]) }}">
+                                            {{ $person->full_name }}
+                                        </a>
+                                        @include('contacts.index')
+                                    </li>
+                                    @endforeach
+                                </ul>
                             {{-- Список контактов --}}
+                            @endif
                         </div>
                         <div class="text-center mt-5 mb-3">
                             <a href="{{ route('vacancies.edit', [$vacancy->id]) }}" class="btn btn-sm btn-primary">
