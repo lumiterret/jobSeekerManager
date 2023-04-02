@@ -96,7 +96,13 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <b class="d-block text-center"><a href="{{route('employers.show', [$vacancy->employer->id])}}">{{ $vacancy->employer->title }}</a></b>
+                                    <b class="d-block text-center">
+                                        @if($vacancy->employer)
+                                        <a href="{{route('employers.show', [$vacancy->employer->id])}}">
+                                            {{ $vacancy->employer->title }}
+                                        </a>
+                                        @endif
+                                    </b>
                                 </div>
                             </div> {{-- /Компания --}}
                         </div>

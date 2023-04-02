@@ -37,9 +37,11 @@
                     </small>
                 </td>
                 <td>
+                    @if($vacancy->employer)
                     <a href="{{ route('employers.show', [$vacancy->employer->id]) }}">
                         {{ $vacancy->employer->title }}
                     </a>
+                    @endif
                 </td>
                 <td>
                     <x-vacancies.status-badge :status="$vacancy->status"/>
