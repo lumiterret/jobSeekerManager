@@ -58,7 +58,8 @@ class VacancyController extends Controller
     public function show($id)
     {
         $vacancy = Vacancy::findOrFail($id);
-        return  view('vacancies.show', compact('vacancy'));
+        $people = Person::orderBy('f_name')->get();
+        return  view('vacancies.show', compact('vacancy', 'people'));
     }
 
     /**
@@ -67,9 +68,8 @@ class VacancyController extends Controller
     public function edit($id)
     {
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
-        $people = Person::orderBy('f_name')->get();
         $vacancy = Vacancy::findOrFail($id);
-        return view('vacancies.edit', compact('vacancy', 'employers', 'people'));
+        return view('vacancies.edit', compact('vacancy', 'employers'));
     }
 
     /**

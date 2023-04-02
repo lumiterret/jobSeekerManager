@@ -34,29 +34,6 @@
                     </div>
                 </div>
             </div>{{-- /.row --}}
-            <div class="row">
-                <div class="col">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            Контактные лица
-                        </div>
-                        <div class="card-body">
-                            <form method="post" action="{{ route('vacancies.assign-people', $vacancy->id) }}">
-                                @csrf
-                                <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
-                                <div class="form-row mb-3">
-                                    <select class="form-control"  name="people[]" id="people" multiple>
-                                        @foreach($people as $person)
-                                            <option value="{{$person->id}}">{{ $person->full_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button class="btn btn-primary" type="submit">Добавить</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 @endsection
