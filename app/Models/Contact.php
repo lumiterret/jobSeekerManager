@@ -13,6 +13,7 @@ class Contact extends Model
     public const EMAIL_TYPE = 'email';
     public const WHATSAPP_TYPE = 'whatsapp';
     public const TELEGRAM_TYPE = 'telegram';
+    public const URL_TYPE = 'url';
 
     protected $fillable = [
         'type',
@@ -26,6 +27,7 @@ class Contact extends Model
             self::PHONE_TYPE,
             self::WHATSAPP_TYPE,
             self::TELEGRAM_TYPE,
+            self::URL_TYPE,
         ];
     }
 }

@@ -6,10 +6,10 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-4">
-                                <b>{{ $contact->type }}</b>
+                                <b>{{ $contact->type }}:</b>
                             </div>
                             <div class="col-5">
-                                <a class="text-nowrap float-right" href="tel:{{ $contact->value }}">
+                                <a class="text-nowrap float-right" href="tel:{{ preg_replace('/[^0-9]/','',$contact->value) }}">
                                     {{ $contact->value }}
                                 </a>
                             </div>
@@ -23,7 +23,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-4">
-                                <b>{{ $contact->type }}</b>
+                                <b>{{ $contact->type }}:</b>
                             </div>
                             <div class="col-5">
                                 <a class="text-nowrap float-right" href="mailto:{{ $contact->value }}">
@@ -40,7 +40,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-4">
-                                <b>{{ $contact->type }}</b>
+                                <b>{{ $contact->type }}:</b>
                             </div>
                             <div class="col-5">
                                 <a class="text-nowrap float-right"
@@ -58,11 +58,29 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-4">
-                                <b>{{ $contact->type }}</b>
+                                <b>{{ $contact->type }}:</b>
                             </div>
                             <div class="col-5">
                                 <a class="text-nowrap float-right"
                                    href="https://t.me/+{{ preg_replace('/[^0-9]/','',$contact->value) }}">
+                                    {{ $contact->value }}
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                @include('contacts.delete')
+                            </div>
+                        </div>
+                    </li>
+                    @break
+                @case('url')
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">
+                                <b>{{ $contact->type }}:</b>
+                            </div>
+                            <div class="col-5">
+                                <a class="text-nowrap float-right"
+                                   href="{{ $contact->value }}">
                                     {{ $contact->value }}
                                 </a>
                             </div>
