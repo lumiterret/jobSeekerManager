@@ -42,8 +42,9 @@ class PersonController extends Controller
     public function show($id)
     {
         $person = Person::findOrFail($id);
+        $vacancies = $person->vacancies()->get();
         $contact = new Contact();
-        return  view('people.show', compact('person', 'contact'));
+        return  view('people.show', compact('person', 'contact', 'vacancies'));
     }
 
     /**

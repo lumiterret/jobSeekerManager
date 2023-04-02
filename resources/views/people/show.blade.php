@@ -39,12 +39,12 @@
                                     <p class="text-muted text-center">
                                         {{ $person->position }}
                                     </p>
-                                </div>
-                                <div class="col col-md-9">
-                                    @include('contacts.index')
                                     <a href="#" id="toggle-button" class="btn btn-primary btn-block">
                                         <b>Добавить контактные данные</b>
                                     </a>
+                                </div>
+                                <div class="col col-md-9">
+                                    @include('contacts.index')
                                     <div class="card card-primary card-outline d-none mt-3" id="add-info">
                                         <div class="card-body">
                                             @include('contacts.form')
@@ -89,37 +89,57 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="active tab-pane" id="vacancy">
-                                    {{-- Вакансия --}}
+                                    {{-- Вакансии --}}
+                                    @if(count($vacancies))
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 1%">
+                                                    #
+                                                </th>
+                                                <th style="width: 25%">
+                                                    Название вакансии
+                                                </th>
+                                                <th style="width: 25%">
+                                                    Компания
+                                                </th>
+                                                <th style="width: 8%" class="text-center">
+                                                    Статус
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($vacancies as $vacancy)
+                                                <tr>
+                                                    <td>
+                                                        {{ $vacancy->id }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
+                                                            {{ $vacancy->title }}
+                                                        </a>
+                                                        <br>
+                                                        <small>
+                                                            {{ $vacancy->created_at }}
+                                                        </small>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('employers.show', [$vacancy->employer->id]) }}">
+                                                            {{ $vacancy->employer->title }}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <x-vacancies.status-badge :status="$vacancy->status"/>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    @else
                                     <div class="post">
-                                        <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                                            <span class="username">
-                                                <a href="#">Jonathan Burke Jr.</a>
-                                                <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                                            </span>
-                                            <span class="description">Shared publicly - 7:30 PM today</span>
-                                        </div> {{-- /.card-body --}}
-                                        <!-- /.user-block -->
-                                        <p>
-                                            Lorem ipsum represents a long-held tradition for designers,
-                                            typographers and the like. Some people hate it and argue for
-                                            its demise, but others ignore the hate as they create awesome
-                                            tools to help create filler text for everyone from bacon lovers
-                                            to Charlie Sheen fans.
-                                        </p>
-
-                                        <p>
-                                            <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                                            <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                                            <span class="float-right">
-                                                <a href="#" class="link-black text-sm">
-                                                    <i class="far fa-comments mr-1"></i> Comments (5)
-                                                </a>
-                                            </span>
-                                        </p>
-
-                                        <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                                    </div>{{-- /.Вакансия --}}
+                                        <p>Ничего не найдено</p>
+                                    </div>{{-- /.Вакансии --}}
+                                    @endif
                                 </div>{{-- /.tab-pane --}}
                                 <div class="tab-pane" id="edit-profile">
                                     <form method="post" action="{{ route('people.update', [$person->id]) }}">
