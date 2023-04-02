@@ -68,55 +68,7 @@
                 </div>
             </div>
             <div class="card-body p-0">
-
-                @if($vacancies->count())
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th style="width: 1%">
-                            #
-                        </th>
-                        <th style="width: 25%">
-                            Название вакансии
-                        </th>
-                        <th style="width: 25%">
-                            Компания
-                        </th>
-                        <th style="width: 8%" class="text-center">
-                            Статус
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                            @foreach($vacancies as $vacancy)
-                                <tr>
-                                    <td>
-                                        {{ $vacancy->id }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
-                                            {{ $vacancy->title }}
-                                        </a>
-                                        <br>
-                                        <small>
-                                            {{ $vacancy->created_at }}
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('employers.show', [$vacancy->employer->id]) }}">
-                                        {{ $vacancy->employer->title }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <x-vacancies.status-badge :status="$vacancy->status"/>
-                                    </td>
-                                </tr>
-                            @endforeach
-                    </tbody>
-                </table>
-                @else
-                    <p>Ничего не найдено</p>
-                @endif
+                <x-vacancies.list-table :vacancies="$vacancies"/>
             </div>
             <div class="card-footer">
                {{-- @if($vacancies->count())
