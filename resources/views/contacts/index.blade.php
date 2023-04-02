@@ -94,4 +94,3 @@
         @endforeach
     @endif
 </ul>
-{{--<a href="#" class="btn btn-primary btn-block"><b>Добавить</b></a>--}}

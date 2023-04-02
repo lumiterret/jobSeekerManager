@@ -42,7 +42,14 @@
                                 </div>
                                 <div class="col col-md-9">
                                     @include('contacts.index')
-                                    @include('contacts.form')
+                                    <a href="#" id="toggle-button" class="btn btn-primary btn-block">
+                                        <b>Добавить контактные данные</b>
+                                    </a>
+                                    <div class="card card-primary card-outline d-none mt-3" id="add-info">
+                                        <div class="card-body">
+                                            @include('contacts.form')
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
