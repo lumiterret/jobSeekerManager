@@ -62,7 +62,9 @@
                             </div>
                             <div class="col-5">
                                 <a class="text-nowrap float-right"
-                                   href="https://t.me/+{{ preg_replace('/[^0-9]/','',$contact->value) }}">
+                                   href="https://t.me/@if(is_numeric(preg_replace('/[^0-9]/','',$contact->value)))
+                                   +{{ preg_replace('/[^0-9]/','',$contact->value) }}
+                                   @else{{$contact->value}}@endif">
                                     {{ $contact->value }}
                                 </a>
                             </div>
