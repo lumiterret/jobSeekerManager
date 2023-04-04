@@ -8,7 +8,7 @@
         badge-success
     @break
     @case('active')
-        badge-primary
+        badge-warning
     @break
     @case('draft')
         badge-info

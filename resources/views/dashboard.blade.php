@@ -18,7 +18,39 @@
         </div>
     </section>
     <section class="content">
-        <div class="card card-primary">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $vacanciesDraftCount }}</h3>
+
+                            <p>Новые вакансии</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <a href="{{ route('vacancies.index',['status[]'=>'draft']) }}" class="small-box-footer">Просмотреть <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $vacanciesActiveCount }}</h3>
+
+                            <p>Активные вакансии</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <a href="{{ route('vacancies.index',['status[]'=>'active']) }}" class="small-box-footer">Просмотреть <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
         </div>
     </section>
 @endsection
