@@ -24,7 +24,7 @@ class VacancyController extends Controller
             $status = array_merge($request->get('status'));
         }
         $query->whereIn('status', $status);
-        $vacancies = $query->get();
+        $vacancies = $query->paginate(8);
 
         return view('vacancies.index',compact('vacancies', 'statuses'));
     }

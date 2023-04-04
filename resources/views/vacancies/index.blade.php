@@ -71,9 +71,9 @@
                 <x-vacancies.list-table :vacancies="$vacancies"/>
             </div>
             <div class="card-footer">
-               {{-- @if($vacancies->count())
-                {{ $vacancies->links() }}
-                @endif--}}
+                @if($vacancies->count())
+                {{ $vacancies->appends(request()->query())->links() }}
+                @endif
             </div>
         </div>
 
