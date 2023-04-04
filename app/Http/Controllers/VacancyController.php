@@ -60,18 +60,16 @@ class VacancyController extends Controller
     public function show($id)
     {
         $vacancy = Vacancy::findOrFail($id);
-        $people = Person::orderBy('f_name')->get();
-        return  view('vacancies.show', compact('vacancy', 'people'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
-        $vacancy = Vacancy::findOrFail($id);
-        return view('vacancies.edit', compact('vacancy', 'employers'));
+        $people = Person::orderBy('f_name')->get();
+        return  view(
+            'vacancies.tabs',
+            compact(
+                'vacancy',
+                'people',
+                'employers'
+            )
+        );
     }
 
     /**
