@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 </head>
-<body class="sidebar-mini layout-fixed" style="height: auto">
+<body class="sidebar-mini layout-fixed  sidebar-collapse" style="height: auto">
 <div class="wrapper">
     <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
         <img class="animation__shake" src="{{ Vite::asset('resources/img/logo.png') }}" alt="AdminLTELogo" height="60" width="60" style="display: none;">

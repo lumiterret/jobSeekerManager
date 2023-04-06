@@ -21,7 +21,6 @@
                                             name="status"
                                             required="required"
                                             class="custom-select">
-                                            <option value=""></option>
                                             @foreach ($vacancy->statuses() as $status)
                                                 <option value="{{ $status }}"
                                                         @if($status == $vacancy->status)
@@ -40,20 +39,26 @@
                 </div> {{-- /Статус--}}
             </div>
             <div class="col-12 col-md-12 col-lg-4">
-                <div class="card card-primary"> {{-- Компания --}}
+                <div class="card card-primary card-outline collapsed-card"> {{-- Назначение встречи --}}
                     <div class="card-header">
-                        <h3 class="card-title">Компания</h3>
+                        <h3 class="card-title">Назначить встречу</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <b class="d-block text-center">
-                            @if($vacancy->employer)
-                                <a href="{{route('employers.show', [$vacancy->employer->id])}}">
-                                    {{ $vacancy->employer->title }}
-                                </a>
-                            @endif
-                        </b>
+                        <form method="post" action="{{ route('vacancies.appointment-create') }}">
+                            @csrf
+                            <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
+                            @include('appointments.form-fields')
+                        </form>
                     </div>
-                </div> {{-- /Компания --}}
+                </div> {{-- /Назначение встречи --}}
             </div>
             <div class="col-12 col-md-12 col-lg-4">
                 <div class="card card-primary card-outline collapsed-card"> {{-- Добавление контактов --}}
@@ -77,7 +82,9 @@
                                     <div class="form-row mb-3">
                                         <select class="form-control"  name="people[]" id="people" multiple>
                                             @foreach($people as $person)
-                                                <option value="{{$person->id}}">{{ $person->full_name }}</option>
+                                                <option value="{{$person->id}}">
+                                                    {{ $person->full_name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -91,9 +98,9 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row"> {{-- Контакты --}}
     <div class="col-12">
-        <table class="table table-striped table-bordered"> {{-- Контакты --}}
+        <table class="table table-striped table-bordered">
             <thead>
             <tr>
                 <th>
@@ -130,14 +137,15 @@
                 </tr>
             @endif
             </tbody>
-        </table> {{-- /Контакты --}}
+        </table>
     </div>
-</div>
-<div class="row">
+</div> {{-- /Контакты --}}
+<div class="row"> {{-- Описание вакансии --}}
     <div class="col-12">
-        <h4>Описание</h4>
-        <div class="post" style="height: 80%">
-            @markdown{{ $vacancy->description }}@endmarkdown
+        <div class="card">
+            <div class="card-body">
+                @markdown{{ $vacancy->description }}@endmarkdown
+            </div>
         </div>
     </div>
 </div>

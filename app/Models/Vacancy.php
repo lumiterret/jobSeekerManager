@@ -30,6 +30,11 @@ class Vacancy extends Model
         return $this->belongsToMany(Person::class);
     }
 
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class)->orderByDesc('date');
+    }
+
     public function statuses()
     {
         return [

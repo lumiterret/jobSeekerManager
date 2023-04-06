@@ -62,12 +62,13 @@ class VacancyController extends Controller
         $vacancy = Vacancy::findOrFail($id);
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
         $people = Person::orderBy('f_name')->get();
+
         return  view(
             'vacancies.tabs',
             compact(
                 'vacancy',
                 'people',
-                'employers'
+                'employers',
             )
         );
     }
