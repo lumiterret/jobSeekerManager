@@ -22,7 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'f_name' => 'required|min:3',
+            'f_name' => 'required|min:2',
             'l_name' => 'required|min:3',
             'position' => 'nullable|string'
         ];
