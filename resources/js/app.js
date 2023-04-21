@@ -7,8 +7,4 @@ import.meta.glob([
     '../img/**'
 ]);
 
-$(document).ready(function() {
-    $("#toggle-button").click(function() {
-        $("#add-info").toggleClass('d-none');
-    });
-});
+window.jQuery = window.$ = $

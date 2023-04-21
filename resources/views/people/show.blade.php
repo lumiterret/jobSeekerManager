@@ -108,5 +108,13 @@
             </div>
         </div>
     </section>
+    <script>
+
+        window.addEventListener("load", function() {
+            $("#toggle-button").click(function() {
+                $("#add-info").toggleClass('d-none');
+            });
+        })
+    </script>
 @endsection
 
