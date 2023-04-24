@@ -8,8 +8,21 @@
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <!-- навигация -->
-        </li>
+        @if(auth()->user())
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ Vite::asset('resources/img/avatar.png') }}" class="user-image img-circle elevation-2" alt="User Image">
+                    <span class="d-none d-md-inline">
+                            {{ auth()->user()->username }}
+                    </span>
+                </a>
+                <div class="dropdown-menu" style="left: inherit; right: 0px;">
+{{--                    <a class="dropdown-item" href="#">Profile</a>--}}
+                    <a class="dropdown-item" href="{{ route('logout') }}">
+                        Sign out
+                    </a>
+                </div>
+            </li>
+        @endif
     </ul>
 </nav>

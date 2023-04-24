@@ -14,30 +14,43 @@ use \App\Http\Controllers;
 |
 */
 
-Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
+Route::middleware('guest')->group(function () {
+    Route::get('auth/login', [Controllers\AuthController::class, 'login'])
+        ->name('login');
 
-Route::resource('vacancies', Controllers\VacancyController::class)
-    ->parameters(['vacancies' => 'id'])
-    ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
-Route::resource('employers', Controllers\EmployerController::class)
-    ->parameters(['employers' => 'id'])
-    ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
-Route::resource('people', Controllers\PersonController::class)
-    ->parameters(['people' => 'id'])
-    ->only(['index', 'show', 'create', 'store', 'update']);
-Route::resource('contact', Controllers\ContacController::class)
-    ->parameters(['contact' => 'id'])
-    ->only(['store', 'destroy']);
-Route::resource('appointments', Controllers\AppointmentController::class)
-    ->parameters(['appointments' => 'id'])
-    ->only(['show', 'update']);
+    Route::post('auth/login', [Controllers\AuthController::class, 'authenticate'])
+        ->name('authenticate');
+});
 
-Route::post('vacancies/{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
-    ->name('vacancies.assign-people');
-Route::post('vacancies/appointment-create', [Controllers\AppointmentController::class, 'store'])
-    ->name('vacancies.appointment-create');
-Route::put('vacancies/status-change', [Controllers\VacancyController::class, 'changeStatus'])
-    ->name('vacancies.status-change');
+Route::middleware('auth')->group(function () {
+    Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])
+        ->name('logout');
 
-Route::put('appointments/status-change', [Controllers\AppointmentController::class, 'changeStatus'])
-    ->name('appointments.status-change');
+    Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
+
+    Route::resource('vacancies', Controllers\VacancyController::class)
+        ->parameters(['vacancies' => 'id'])
+        ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+    Route::resource('employers', Controllers\EmployerController::class)
+        ->parameters(['employers' => 'id'])
+        ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+    Route::resource('people', Controllers\PersonController::class)
+        ->parameters(['people' => 'id'])
+        ->only(['index', 'show', 'create', 'store', 'update']);
+    Route::resource('contact', Controllers\ContacController::class)
+        ->parameters(['contact' => 'id'])
+        ->only(['store', 'destroy']);
+    Route::resource('appointments', Controllers\AppointmentController::class)
+        ->parameters(['appointments' => 'id'])
+        ->only(['show', 'update']);
+
+    Route::post('vacancies/{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
+        ->name('vacancies.assign-people');
+    Route::post('vacancies/appointment-create', [Controllers\AppointmentController::class, 'store'])
+        ->name('vacancies.appointment-create');
+    Route::put('vacancies/status-change', [Controllers\VacancyController::class, 'changeStatus'])
+        ->name('vacancies.status-change');
+
+    Route::put('appointments/status-change', [Controllers\AppointmentController::class, 'changeStatus'])
+        ->name('appointments.status-change');
+});

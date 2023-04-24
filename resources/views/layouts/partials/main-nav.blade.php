@@ -4,17 +4,6 @@
     <span class="brand-text font-weight-light">JobSeeker manager</span>
 </a>
 <div class="sidebar">
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-            <img
-                src="{{ Vite::asset('resources/img/avatar.png') }}"
-                class="img-circle elevation-2"
-                alt="User Image">
-        </div>
-        <div class="info">
-            <a href="#" class="d-block">Вася Ветров</a>
-        </div>
-    </div>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item"> {{-- Меню вакансий --}}
