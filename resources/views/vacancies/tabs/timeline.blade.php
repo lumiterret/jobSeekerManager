@@ -15,7 +15,7 @@
                     <i class="fas fa-handshake bg-primary"></i> {{-- Иконка типа встречи цвет зависит от статуса --}}
 
                     <div class="timeline-item">
-                        <span class="time"><i class="far fa-clock"></i> {{$appointment->date->format(' H:m')}}</span> {{-- Время встречи --}}
+                        <span class="time"><i class="far fa-clock"></i> {{$appointment->date->format(' H:i')}}</span> {{-- Время встречи --}}
 
                         <h3 class="timeline-header">
                             <b>{{ $appointment->title }}</b> {{-- Заголовок со ссылкой на просмор? аппойнтмента --}}

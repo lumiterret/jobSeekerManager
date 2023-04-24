@@ -62,7 +62,7 @@
                     name="start_time"
                     id="start_time"
                     @if(isset($appointment))
-                        value="{{ old('start_time') ?? $appointment->date->format('H:m') }}"
+                        value="{{ old('start_time') ?? $appointment->date->format('H:i') }}"
                     @else
                         value="{{ old('start_time') }}"
                     @endif
