@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
-      
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: copy_files
-      - run: echo "Hello World!"
+        run: echo "Hello World!"
