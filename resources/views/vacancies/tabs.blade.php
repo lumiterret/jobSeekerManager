@@ -17,9 +17,19 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Обзор</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('vacancies.index') }}">Вакансии</a></li>
-                        <li class="breadcrumb-item active">Просмотр</li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('home') }}">
+                                Обзор
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('vacancies.index') }}">
+                                Вакансии
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            Просмотр
+                        </li>
                     </ol>
                 </div>
             </div>
