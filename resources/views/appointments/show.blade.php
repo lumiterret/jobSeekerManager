@@ -20,7 +20,7 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('appointments.index') }}">
-                                Вакансии
+                                Встречи
                             </a>
                         </li>
                         <li class="breadcrumb-item active">
