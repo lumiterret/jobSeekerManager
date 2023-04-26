@@ -18,7 +18,7 @@ class VacancyController extends Controller
         $vacancy = new Vacancy();
         $statuses = $vacancy->statuses();
         $query = Vacancy::orderByDesc('created_at');
-        $status = ['active'];
+        $status = [Vacancy::STATUS_ACTIVE];
 
         if ($request->get('status')) {
             $status = array_merge($request->get('status'));
@@ -26,7 +26,13 @@ class VacancyController extends Controller
         $query->whereIn('status', $status);
         $vacancies = $query->paginate(50);
 
-        return view('vacancies.index',compact('vacancies', 'statuses'));
+        return view(
+            'vacancies.index',
+                compact(
+                'vacancies',
+                'statuses'
+            )
+        );
     }
 
     /**

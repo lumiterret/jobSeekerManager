@@ -75,6 +75,23 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item"> {{-- Меню контактных лиц --}}
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <p>
+                        Встречи
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('appointments.index') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            Список
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>

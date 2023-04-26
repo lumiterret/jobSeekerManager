@@ -7,9 +7,38 @@ use App\Http\Requests\Appointment\UpdateRequest;
 use App\Models\Appointment;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\BinaryOp\SmallerOrEqual;
 
 class AppointmentController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        $appointment = new Appointment();
+        $query = $appointment->query()
+            ->orderByDesc('date');
+
+        $statuses = $appointment->statuses();
+
+        $status = [Appointment::STATUS_APPOINTED];
+
+        if ($request->get('status')) {
+            $status = array_merge($request->get('status'));
+        }
+
+        $query->whereIn('status', $status);
+        $appointments = $query->paginate(10);
+
+        return view(
+            'appointments.index',
+            compact(
+                'appointments',
+                'statuses'
+            )
+        );
+    }
     /**
      * Store a newly created resource in storage.
      */

@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
         ->only(['store', 'destroy']);
     Route::resource('appointments', Controllers\AppointmentController::class)
         ->parameters(['appointments' => 'id'])
-        ->only(['show', 'update']);
+        ->only(['index','show', 'update']);
 
     Route::post('vacancies/{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
         ->name('vacancies.assign-people');
