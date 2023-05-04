@@ -22,7 +22,9 @@
     <div class="col-md-6 mb-3">
         <label for="employer" class="col-form-label">
             Компания
-            <span class="text-danger">*</span>
+            @if(isset($vacancy))
+                <span class="text-danger">*</span>
+            @endif
         </label>
         <select
             class="form-control @error('employer_id')is-invalid @enderror"
@@ -41,7 +43,6 @@
                     </option>
                 @endforeach
             @else
-                <option value="" disabled selected>Выберите...</option>
                 @foreach($employers as $employerId => $employerTitle)
                     <option value="{{ $employerId }}">{{ $employerTitle }}</option>
                 @endforeach

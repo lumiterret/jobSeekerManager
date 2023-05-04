@@ -2,8 +2,6 @@
 
 @section('title', 'Добавление вакансии')
 
-
-
 @section('content')
     <section class="content-header">
         <div class="container-fluid">

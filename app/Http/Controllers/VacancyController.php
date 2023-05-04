@@ -6,6 +6,8 @@ use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Employer;
 use App\Models\Person;
 use App\Models\Vacancy;
+use App\Services\Vacancy\Http\VacancyIndexFilters;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class VacancyController extends Controller
@@ -13,17 +15,19 @@ class VacancyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(VacancyIndexFilters $filters)
     {
         $vacancy = new Vacancy();
         $statuses = $vacancy->statuses();
-        $query = Vacancy::orderByDesc('created_at');
-        $status = [Vacancy::STATUS_ACTIVE];
+        $query = Vacancy::query()->with('employer');
 
-        if ($request->get('status')) {
-            $status = array_merge($request->get('status'));
+        if ($filters->employer) {
+            $employer = '%' . $filters->employer . '%';
+            $query->whereRelation('employer',function (Builder $builder) use ($employer) {
+                $builder->where('title', 'LIKE', $employer);
+            });
         }
-        $query->whereIn('status', $status);
+        $query->whereIn('vacancies.status', $filters->status)->orderByDesc('vacancies.created_at');
         $vacancies = $query->paginate(50);
 
         return view(

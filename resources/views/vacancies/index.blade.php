@@ -34,22 +34,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col col-sm-3">
-                        <form method="get" action="{{ route('vacancies.index')}}">
-                            <div class="form-group mb-3">
-                                <label class="col-form-label-sm" for="status">Статус</label>
-                                <select class="form-control" id="status" name="status[]" multiple>
-                                    <option value="" selected disabled></option>
-                                    @foreach($statuses as $status)
-                                        <option value="{{ $status }}">
-                                            {{ __(ucfirst($status)) }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <button class="btn btn-success" type="submit">Поиск</button>
-                        </form>
+                <div class="row w-100">
+                    <div class="col">
+                        @include('vacancies.index-filters')
                     </div>
                 </div>
             </div>
@@ -72,7 +59,7 @@
             </div>
             <div class="card-footer">
                 @if($vacancies->count())
-                {{ $vacancies->appends(request()->query())->links() }}
+                {{-- $vacancies->appends(request()->query())->links() --}}
                 @endif
             </div>
         </div>

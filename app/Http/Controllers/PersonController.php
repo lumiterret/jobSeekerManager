@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Person\StoreRequest;
 use App\Models\Contact;
 use App\Models\Person;
+use App\Services\Person\Http\PersonIndexFilters;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -12,9 +13,16 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PersonIndexFilters $filters)
     {
-        $people = Person::orderBy('f_name')->get();
+        $query = Person::orderBy('f_name');
+
+        if ($filters->firstName) {
+            $fName = '%' . $filters->firstName . '%';
+            $query->where('f_name', 'LIKE', $fName);
+        }
+
+        $people = $query->paginate(50);
         return view('people.index', compact('people'));
     }
 

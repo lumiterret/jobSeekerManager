@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Employer\StoreRequest;
 use App\Models\Employer;
+use App\Services\Employer\Http\EmployerIndexFilters;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
@@ -11,9 +12,14 @@ class EmployerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(EmployerIndexFilters $filters)
     {
         $query = Employer::query();
+
+        if ($filters->employer) {
+            $employer = '%' . $filters->employer . '%';
+            $query->where('title', 'LIKE', $employer);
+        }
 
         $employers = $query->paginate(8);
         foreach ($employers as $employer) {
