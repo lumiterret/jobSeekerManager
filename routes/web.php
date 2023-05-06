@@ -28,9 +28,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
-    Route::resource('vacancies', Controllers\VacancyController::class)
-        ->parameters(['vacancies' => 'id'])
-        ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+    Route::resource('users', Controllers\UserController::class)
+        ->parameters(['users' => 'id'])
+        ->only(['index', 'show', 'edit', 'update']);
+
     Route::resource('employers', Controllers\EmployerController::class)
         ->parameters(['employers' => 'id'])
         ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
@@ -44,12 +45,17 @@ Route::middleware('auth')->group(function () {
         ->parameters(['appointments' => 'id'])
         ->only(['index','show', 'update']);
 
-    Route::post('vacancies/{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
-        ->name('vacancies.assign-people');
-    Route::post('vacancies/appointment-create', [Controllers\AppointmentController::class, 'store'])
-        ->name('vacancies.appointment-create');
-    Route::put('vacancies/status-change', [Controllers\VacancyController::class, 'changeStatus'])
-        ->name('vacancies.status-change');
+    Route::prefix('vacancies/')->group(function () {
+        Route::post('{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
+            ->name('vacancies.assign-people');
+        Route::post('appointment-create', [Controllers\AppointmentController::class, 'store'])
+            ->name('vacancies.appointment-create');
+        Route::put('status-change', [Controllers\VacancyController::class, 'changeStatus'])
+            ->name('vacancies.status-change');
+    });
+    Route::resource('vacancies', Controllers\VacancyController::class)
+        ->parameters(['vacancies' => 'id'])
+        ->only(['index', 'show', 'create', 'store', 'update']);
 
     Route::put('appointments/status-change', [Controllers\AppointmentController::class, 'changeStatus'])
         ->name('appointments.status-change');

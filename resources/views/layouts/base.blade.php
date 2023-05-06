@@ -11,7 +11,7 @@
 <body class="sidebar-mini layout-fixed  sidebar-collapse" style="height: auto">
 <div class="wrapper">
     <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
-        <img class="animation__shake" src="{{ Vite::asset('resources/img/logo.png') }}" alt="AdminLTELogo" height="60" width="60" style="display: none;">
+        <img class="animation__shake" src="{{ Vite::asset('resources/img/logo.png') }}" alt="logo" height="60" width="60" style="display: none;">
     </div>
     @include('layouts.partials.header')
     <aside class="main-sidebar sidebar-dark-primary elevation-4">

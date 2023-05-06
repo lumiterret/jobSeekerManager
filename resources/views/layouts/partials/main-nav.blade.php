@@ -75,7 +75,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item"> {{-- Меню контактных лиц --}}
+            <li class="nav-item"> {{-- Меню встреч --}}
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-calendar-alt"></i>
                     <p>
@@ -92,6 +92,25 @@
                     </li>
                 </ul>
             </li>
+            @if(user()->is_admin)
+            <li class="nav-item"> {{-- Меню управления --}}
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-user-secret"></i>
+                    <p>
+                        Управление
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="fas fa-users nav-icon"></i>
+                            Список
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
         </ul>
     </nav>
 </div>
