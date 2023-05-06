@@ -51,11 +51,13 @@
                             @if($employer->vacancies->count())
                                 <ul>
                                     @foreach($employer->vacancies as $vacancy)
-                                    <li>
-                                        <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
-                                            {{ $vacancy->title }}
-                                        </a>
-                                    </li>
+                                        @if(user()->is_admin || user()->id === $vacancy->user_id)
+                                            <li>
+                                                <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
+                                                    {{ $vacancy->title }}
+                                                </a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             @else
@@ -65,11 +67,13 @@
                             <h5 class="mt-5 text-muted">Контакты</h5>
                             {{-- Список контактов --}}
                         </div>
-                        <div class="text-center mt-5 mb-3">
-                            <a href="{{ route('employers.edit', [$employer->id]) }}" class="btn btn-sm btn-primary">
-                                Редактировать
-                            </a>
-                        </div>
+                        @if(user()->is_admin || user()->id === $employer->user_id)
+                            <div class="text-center mt-5 mb-3">
+                                <a href="{{ route('employers.edit', [$employer->id]) }}" class="btn btn-sm btn-primary">
+                                    Редактировать
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

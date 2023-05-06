@@ -24,7 +24,12 @@ class EmployerController extends Controller
         $employers = $query->paginate(8);
         foreach ($employers as $employer) {
             $employer->activeVacancies = 'active';
-            if ($employer->vacancies()->whereStatus('active')->count() === 0) {
+            if (
+                $employer
+                    ->vacancies()
+                    ->where('user_id', user()->id)
+                    ->whereStatus('active')->count() === 0
+            ) {
                 $employer->activeVacancies = 'no active';
             }
         }
@@ -45,7 +50,9 @@ class EmployerController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $employer = Employer::create($data);
+        $employer = new Employer($data);
+        $employer->user_id = user()->id;
+        $employer->save();
         return redirect()->route('employers.show', [$employer->id]);
     }
 
@@ -63,7 +70,11 @@ class EmployerController extends Controller
      */
     public function edit($id)
     {
+
         $employer = Employer::findOrFail($id);
+
+        $this->authorize('update', $employer);
+
         return view('employers.edit', compact('employer'));
     }
 
@@ -74,6 +85,9 @@ class EmployerController extends Controller
     {
         $data = $request->validated();
         $employer = Employer::findOrFail($id);
+
+        $this->authorize('update', $employer);
+
         $employer->update($data);
         return redirect()->route('employers.show', [$employer->id]);
     }
