@@ -81,9 +81,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#vacancy" data-toggle="tab">Вакансии</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#edit-profile" data-toggle="tab">Редактировать</a>
-                                </li>
+                                @if(user()->is_admin || $person->user_id === user()->id)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#edit-profile" data-toggle="tab">Редактировать</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div> {{-- /.card-header --}}
                         <div class="card-body">
@@ -92,15 +94,17 @@
                                     {{-- Вакансии --}}
                                     <x-vacancies.list-table :vacancies="$vacancies"/>
                                 </div>{{-- /.tab-pane Вакансии--}}
-                                <div class="tab-pane" id="edit-profile">
-                                    <form method="post" action="{{ route('people.update', [$person->id]) }}">
-                                        @csrf
-                                        @method('put')
-                                        <input type="hidden" name="id" value="{{ $person->id }}">
-                                        @include('people.form-fields')
-                                        <button type="submit" class="btn btn-success">Изменить</button>
-                                    </form>
-                                </div>{{-- /.tab-pane --}}
+                                @if(user()->is_admin || $person->user_id === user()->id)
+                                    <div class="tab-pane" id="edit-profile">
+                                        <form method="post" action="{{ route('people.update', [$person->id]) }}">
+                                            @csrf
+                                            @method('put')
+                                            <input type="hidden" name="id" value="{{ $person->id }}">
+                                            @include('people.form-fields')
+                                            <button type="submit" class="btn btn-success">Изменить</button>
+                                        </form>
+                                    </div>{{-- /.tab-pane --}}
+                                @endif
                             </div>{{-- /.tab-content --}}
                         </div> {{-- /.card-body --}}
                     </div> {{-- /.card --}}

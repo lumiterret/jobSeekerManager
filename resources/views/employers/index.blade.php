@@ -101,7 +101,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 @if($employers->count())
-                {{ $employers->links() }}
+                {{ $employers->appends(request()->query())->links() }}
                 @endif
             </div>
         </div>

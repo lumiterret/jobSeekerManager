@@ -17,6 +17,10 @@ class PersonController extends Controller
     {
         $query = Person::orderBy('f_name');
 
+        if (user()->is_admin === false) {
+            $query->where('user_id', user()->id);
+        }
+
         if ($filters->firstName) {
             $fName = '%' . $filters->firstName . '%';
             $query->where('f_name', 'LIKE', $fName);
@@ -40,7 +44,9 @@ class PersonController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $person = Person::create($data);
+        $person = new Person($data);
+        $person->user_id = user()->id;
+        $person->save();
         return redirect()->route('people.show', [$person->id]);
     }
 

@@ -100,9 +100,9 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                {{--@if($people->count())
-                {{ $people->links() }}
-                @endif--}}
+                @if($people->count())
+                    {{ $people->appends(request()->query())->links() }}
+                @endif
             </div>
         </div>
 
