@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Employer;
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class EmployerPolicy
+class AppointmentPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,9 +19,9 @@ class EmployerPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Employer $employer): bool
+    public function view(User $user, Appointment $appointment): bool
     {
-        return true;
+        return $user->is_admin || $user->id === $appointment->user_id;
     }
 
     /**
@@ -35,23 +35,23 @@ class EmployerPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Employer $employer): bool
+    public function update(User $user, Appointment $appointment): bool
     {
-        return $user->is_admin || $user->id === $employer->user_id;
+        return $user->is_admin || $user->id === $appointment->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Employer $employer): bool
+    public function delete(User $user, Appointment $appointment): bool
     {
-        return $user->is_admin;
+        return $user->is_admin || $user->id === $appointment->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Employer $employer): bool
+    public function restore(User $user, Appointment $appointment): bool
     {
         return $user->is_admin;
     }
@@ -59,7 +59,7 @@ class EmployerPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Employer $employer): bool
+    public function forceDelete(User $user, Appointment $appointment): bool
     {
         return $user->is_admin;
     }

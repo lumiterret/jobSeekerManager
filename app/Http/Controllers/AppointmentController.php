@@ -20,6 +20,10 @@ class AppointmentController extends Controller
         $query = $appointment->query()
             ->orderByDesc('date');
 
+        if (user()->is_admin === false) {
+            $query->where('user_id', user()->id);
+        }
+
         $statuses = $appointment->statuses();
 
         $status = [Appointment::STATUS_APPOINTED];
@@ -50,8 +54,8 @@ class AppointmentController extends Controller
         $appointment = new Appointment();
         $appointment->created_at = now();
         $appointment->vacancy_id = $data['vacancy_id'];
-        $appointment->date = $data['date'] . ' ' . $data['start_time'];
         $appointment->status = Appointment::STATUS_APPOINTED;
+        $appointment->user_id = user()->id;
         $this->fillAppointment($data, $appointment);
         $vacancy->status = Vacancy::STATUS_ACTIVE;
         $vacancy->save();
@@ -65,6 +69,9 @@ class AppointmentController extends Controller
     public function show($id)
     {
         $appointment = Appointment::findOrFail($id);
+
+        $this->authorize('view', $appointment);
+
         return view('appointments.show', compact('appointment'));
     }
 
@@ -74,10 +81,10 @@ class AppointmentController extends Controller
     public function update(StoreRequest $request, $id)
     {
         $data = $request->validated();
-        $vacancy = Vacancy::findOrFail($data['vacancy_id']);
-
         $appointment = Appointment::findOrFail($id);
-        $appointment->date = $data['date'] . ' ' . $data['start_time'];
+
+        $this->authorize('view', $appointment);
+
         $this->fillAppointment($data, $appointment);
 
         return back();
@@ -114,6 +121,7 @@ class AppointmentController extends Controller
         $appointment->title = $data['title'];
         $appointment->description = (!empty($data['description'])) ? $data['description'] : null;
         $appointment->meeting = (!empty($data['meeting'])) ? $data['meeting'] : null;
+        $appointment->date = $data['date'] . ' ' . $data['start_time'];
         $appointment->updated_at = now();
         $appointment->save();
     }

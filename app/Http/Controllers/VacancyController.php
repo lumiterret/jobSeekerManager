@@ -80,7 +80,7 @@ class VacancyController extends Controller
         $this->authorize('view', $vacancy);
 
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
-        $people = Person::orderBy('f_name')->get();
+        $people = Person::orderBy('f_name')->where('user_id', user()->id)->get();
 
         return  view(
             'vacancies.tabs',
