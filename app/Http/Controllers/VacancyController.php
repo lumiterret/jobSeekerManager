@@ -77,9 +77,8 @@ class VacancyController extends Controller
     {
         $vacancy = Vacancy::findOrFail($id);
 
-        if (user()->cannot('view', $vacancy)) {
-            abort(403);
-        }
+        $this->authorize('view', $vacancy);
+
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
         $people = Person::orderBy('f_name')->get();
 
@@ -101,9 +100,7 @@ class VacancyController extends Controller
         $vacancy = Vacancy::findOrFail($id);
         $data = $request->validated();
 
-        if ($request->user()->cannot('update', $vacancy)) {
-            abort(403);
-        }
+        $this->authorize('update', $vacancy);
 
         $vacancy->title = $data['title'];
         $vacancy->description = $data['description'];
@@ -116,9 +113,7 @@ class VacancyController extends Controller
     {
         $vacancy = Vacancy::findOrFail($id);
 
-        if ($request->user()->cannot('update', $vacancy)) {
-            abort(403);
-        }
+        $this->authorize('update', $vacancy);
 
         try{
             $vacancy->people()->sync($request['people']);
@@ -136,9 +131,7 @@ class VacancyController extends Controller
         ]);
         $vacancy = Vacancy::findOrFail($validated['vacancy_id']);
 
-        if ($request->user()->cannot('update', $vacancy)) {
-            abort(403);
-        }
+        $this->authorize('update', $vacancy);
 
         $vacancy->status = $validated['status'];
         $vacancy->save();
