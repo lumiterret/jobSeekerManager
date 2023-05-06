@@ -59,7 +59,7 @@
             </div>
             <div class="card-footer">
                 @if($vacancies->count())
-                {{-- $vacancies->appends(request()->query())->links() --}}
+                {{ $vacancies->appends(request()->query())->links() }}
                 @endif
             </div>
         </div>

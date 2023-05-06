@@ -6,9 +6,6 @@
 <table class="table table-striped table-bordered">
     <thead>
     <tr>
-        <th style="width: 1%">
-            #
-        </th>
         <th style="width: 25%">
             Название вакансии
         </th>
@@ -24,9 +21,6 @@
     @if(count($vacancies))
         @foreach($vacancies as $vacancy)
             <tr>
-                <td>
-                    {{ $vacancy->id }}
-                </td>
                 <td>
                     <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
                         {{ $vacancy->title }}

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -21,6 +22,10 @@ class VacancyController extends Controller
         $statuses = $vacancy->statuses();
         $query = Vacancy::query()->with('employer');
 
+        if (user()->is_admin === false) {
+            $query->where('user_id', user()->id);
+        }
+
         if ($filters->employer) {
             $employer = '%' . $filters->employer . '%';
             $query->whereRelation('employer',function (Builder $builder) use ($employer) {
@@ -28,7 +33,7 @@ class VacancyController extends Controller
             });
         }
         $query->whereIn('vacancies.status', $filters->status)->orderByDesc('vacancies.created_at');
-        $vacancies = $query->paginate(50);
+        $vacancies = $query->paginate(20);
 
         return view(
             'vacancies.index',
@@ -57,6 +62,7 @@ class VacancyController extends Controller
         $vacancy = new Vacancy();
         $vacancy->title = $data['title'];
         $vacancy->description = $data['description'];
+        $vacancy->user_id = user()->id;
         if(isset($data['employer_id'])) {
             $vacancy->employer_id = $data['employer_id'];
         }
@@ -70,6 +76,10 @@ class VacancyController extends Controller
     public function show($id)
     {
         $vacancy = Vacancy::findOrFail($id);
+
+        if (user()->cannot('view', $vacancy)) {
+            abort(403);
+        }
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
         $people = Person::orderBy('f_name')->get();
 
@@ -88,8 +98,13 @@ class VacancyController extends Controller
      */
     public function update(StoreRequest $request, $id)
     {
-        $data = $request->validated();
         $vacancy = Vacancy::findOrFail($id);
+        $data = $request->validated();
+
+        if ($request->user()->cannot('update', $vacancy)) {
+            abort(403);
+        }
+
         $vacancy->title = $data['title'];
         $vacancy->description = $data['description'];
         $vacancy->employer_id = $data['employer_id'];
@@ -100,6 +115,11 @@ class VacancyController extends Controller
     public function assignPeople(Request $request, $id)
     {
         $vacancy = Vacancy::findOrFail($id);
+
+        if ($request->user()->cannot('update', $vacancy)) {
+            abort(403);
+        }
+
         try{
             $vacancy->people()->sync($request['people']);
         } catch (\Throwable) {
@@ -115,6 +135,11 @@ class VacancyController extends Controller
             'status' => 'required|string'
         ]);
         $vacancy = Vacancy::findOrFail($validated['vacancy_id']);
+
+        if ($request->user()->cannot('update', $vacancy)) {
+            abort(403);
+        }
+
         $vacancy->status = $validated['status'];
         $vacancy->save();
 
