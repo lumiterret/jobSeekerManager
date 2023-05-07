@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -12,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $query = User::query();
+        $user = new User();
+        $this->authorize('viewAny', $user);
+        $query = $user->query();
         $users = $query->paginate(50);
         return view('users.index', compact('users'));
     }
@@ -22,15 +26,20 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $user = new User();
+        $this->fillUser($user, $validated);
+        $user->save();
+        return redirect()->route('users.show',[$user->id]);
     }
 
     /**
@@ -38,23 +47,23 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $user = User::findOrFail($id);
+        $this->authorize('view', $user);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreRequest $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $this->authorize('update', $user);
+        $validated = $request->validated();
+        $this->fillUser($user, $validated);
+        $user->save();
+        return redirect()->route('users.show', [$user->id]);
     }
 
     /**
@@ -63,5 +72,16 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function fillUser(User $user, array $data)
+    {
+        $user->username = $data['username'];
+        if ($data['password']) {
+            $user->password = bcrypt($data['password']);
+        }
+        if (Arr::exists($data, 'is_admin')) {
+            $user->is_admin = $data['is_admin'];
+        }
     }
 }

@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('users', Controllers\UserController::class)
         ->parameters(['users' => 'id'])
-        ->only(['index', 'show', 'edit', 'update']);
+        ->only(['index', 'show', 'create', 'store', 'update']);
 
     Route::resource('employers', Controllers\EmployerController::class)
         ->parameters(['employers' => 'id'])

@@ -47,7 +47,11 @@
                 <h3 class="card-title">Пользователи</h3>
 
                 <div class="card-tools">
-                    {{-- кнопки --}}
+                    <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">
+                        <i class="fas fa-plus-circle">
+                        </i>
+                        Добавить пользователя
+                    </a>
                 </div>
             </div>
             <div class="card-body p-0">

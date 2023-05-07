@@ -105,7 +105,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">
                             <i class="fas fa-users nav-icon"></i>
-                            Список
+                            Список пользователей
                         </a>
                     </li>
                 </ul>

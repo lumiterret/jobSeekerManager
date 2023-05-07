@@ -13,13 +13,13 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="{{ Vite::asset('resources/img/avatar.png') }}" class="user-image img-circle elevation-2" alt="User Image">
                     <span class="d-none d-md-inline">
-                            {{ auth()->user()->username }}
+                            {{ user()->username }}
                     </span>
                 </a>
                 <div class="dropdown-menu" style="left: inherit; right: 0px;">
-{{--                    <a class="dropdown-item" href="#">Profile</a>--}}
+                    <a class="dropdown-item" href="{{ route('users.show', user()->id) }}">Профиль</a>
                     <a class="dropdown-item" href="{{ route('logout') }}">
-                        Sign out
+                        Выход
                     </a>
                 </div>
             </li>
