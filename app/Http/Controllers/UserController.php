@@ -80,8 +80,10 @@ class UserController extends Controller
         if ($data['password']) {
             $user->password = bcrypt($data['password']);
         }
+        $isAdmin = false;
         if (Arr::exists($data, 'is_admin')) {
-            $user->is_admin = $data['is_admin'];
+            $isAdmin = $data['is_admin'];
         }
+        $user->is_admin = $isAdmin;
     }
 }
