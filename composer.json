@@ -52,6 +52,11 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "ide-helper-regenerate": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models -n",
+            "@php artisan ide-helper:meta"
         ]
     },
     "extra": {

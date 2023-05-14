@@ -93,23 +93,29 @@
                 </ul>
             </li>
             @if(user()->is_admin)
-            <li class="nav-item"> {{-- Меню управления --}}
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-user-secret"></i>
-                    <p>
-                        Управление
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}">
-                            <i class="fas fa-users nav-icon"></i>
-                            Список пользователей
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                <li class="nav-item"> {{-- Меню управления --}}
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-secret"></i>
+                        <p>
+                            Управление
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="fas fa-users nav-icon"></i>
+                                Список пользователей
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cron-jobs.index') }}">
+                                <i class="fas fa-clipboard-list nav-icon"></i>
+                                Кроны
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @endif
         </ul>
     </nav>

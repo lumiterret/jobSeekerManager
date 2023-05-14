@@ -28,9 +28,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
-    Route::resource('users', Controllers\UserController::class)
-        ->parameters(['users' => 'id'])
-        ->only(['index', 'show', 'create', 'store', 'update']);
+    Route::prefix('control/')->group(function () {
+        Route::resource('users', Controllers\UserController::class)
+            ->parameters(['users' => 'id'])
+            ->only(['index', 'show', 'create', 'store', 'update']);
+        Route::resource('cron-jobs', Controllers\CronJobController::class)
+            ->only(['index', 'create', 'store', 'edit', 'update']);
+    });
 
     Route::resource('employers', Controllers\EmployerController::class)
         ->parameters(['employers' => 'id'])
