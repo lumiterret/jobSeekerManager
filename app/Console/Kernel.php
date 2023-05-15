@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\CronJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -12,7 +13,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $jobs = CronJob::query()->where('is_active', true)->get();
+
+        foreach ($jobs as $job) {
+            $schedule->command($job->command)
+                ->name($job->description)
+                ->cron($job->schedule_time)
+                ->withoutOverlapping()
+                ->runInBackground();
+        }
     }
 
     /**
@@ -21,6 +30,7 @@ class Kernel extends ConsoleKernel
     protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__.'/Commands/CronJobs');
 
         require base_path('routes/console.php');
     }
