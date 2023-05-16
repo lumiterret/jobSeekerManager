@@ -17,7 +17,8 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         $appointment = new Appointment();
-        $query = $appointment->query();
+        $query = $appointment->query()
+            ->orderBy('date');
 
         if (user()->is_admin === false) {
             $query->where('user_id', user()->id);
