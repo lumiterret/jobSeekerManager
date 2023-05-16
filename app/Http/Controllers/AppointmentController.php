@@ -17,8 +17,7 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         $appointment = new Appointment();
-        $query = $appointment->query()
-            ->orderByDesc('date');
+        $query = $appointment->query();
 
         if (user()->is_admin === false) {
             $query->where('user_id', user()->id);
@@ -30,6 +29,8 @@ class AppointmentController extends Controller
 
         if ($request->get('status')) {
             $status = array_merge($request->get('status'));
+        } else {
+            $query->orderByDesc('date');
         }
 
         $query->whereIn('status', $status);
