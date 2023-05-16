@@ -29,8 +29,6 @@ class AppointmentController extends Controller
 
         if ($request->get('status')) {
             $status = array_merge($request->get('status'));
-        } else {
-            $query->orderByDesc('date');
         }
 
         $query->whereIn('status', $status);
