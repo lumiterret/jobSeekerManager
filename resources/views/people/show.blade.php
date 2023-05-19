@@ -60,21 +60,6 @@
             </div>
             <div class="row">
                 <div class="col">
-                    {{-- Description --}}
-                    <div class="card card-primary">
-                        <div class="card-header text-center">
-                            Заметка
-                        </div> {{-- /.card-header --}}
-                        <div class="card-body">
-                            <p class="text-muted">
-                                Приветствую меня зовут "Name" - я представляю компанию "Conpany name"
-                            </p>
-                        </div> {{-- /.card-body --}}
-                    </div>{{-- /Description --}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
