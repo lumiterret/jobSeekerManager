@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'f_name' => 'required|min:2',
-            'l_name' => 'required|min:3',
+            'l_name' => 'required',
             'position' => 'nullable|string'
         ];
     }

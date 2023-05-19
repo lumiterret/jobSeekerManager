@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Employer;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -21,8 +22,20 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        if($this->getMethod() === 'POST') {
+            // создание
+            $id = null;
+        } else {
+            // редактирование
+            $id = $this->get('id');
+        }
+        $title = [
+            'required',
+            'min:2',
+            Rule::unique('employers')->ignore($id),
+        ];
         return [
-            'title' => 'required|min:3',
+            'title' => $title,
             'description' => 'required|min:10|max:65535'
         ];
     }
