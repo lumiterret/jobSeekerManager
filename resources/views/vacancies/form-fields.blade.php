@@ -32,6 +32,7 @@
                 name="employer_id"
                 id="employer"
             >
+                <option value="" disabled selected>Выберите...</option>
                 @if(isset($vacancy))
                     @foreach($employers as $employerId => $employerTitle)
                         <option value="{{ $employerId }}"
