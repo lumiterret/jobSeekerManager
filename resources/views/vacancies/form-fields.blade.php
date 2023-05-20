@@ -26,28 +26,29 @@
                 <span class="text-danger">*</span>
             @endif
         </label>
-        <select
-            class="form-control @error('employer_id')is-invalid @enderror"
-            name="employer_id"
-            id="employer"
-        >
-            <option value="" disabled selected>Выберите...</option>
-            @if(isset($vacancy))
-                @foreach($employers as $employerId => $employerTitle)
-                    <option value="{{ $employerId }}"
-                            @if($vacancy->employer && $vacancy->employer->id == $employerId)
-                                selected
-                        @endif
-                    >
-                        {{ $employerTitle }}
-                    </option>
-                @endforeach
-            @else
-                @foreach($employers as $employerId => $employerTitle)
-                    <option value="{{ $employerId }}">{{ $employerTitle }}</option>
-                @endforeach
-            @endif
-        </select>
+        <div>
+            <select
+                class="form-control @error('employer_id')is-invalid @enderror"
+                name="employer_id"
+                id="employer"
+            >
+                @if(isset($vacancy))
+                    @foreach($employers as $employerId => $employerTitle)
+                        <option value="{{ $employerId }}"
+                                @if($vacancy->employer && $vacancy->employer->id == $employerId)
+                                    selected
+                            @endif
+                        >
+                            {{ $employerTitle }}
+                        </option>
+                    @endforeach
+                @else
+                    @foreach($employers as $employerId => $employerTitle)
+                        <option value="{{ $employerId }}">{{ $employerTitle }}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
         @error('employer_id')
         <span class="error invalid-feedback">{{ $message }}</span>
         @enderror
@@ -68,3 +69,12 @@
         @enderror
     </div>
 </div>
+
+<script>
+    window.addEventListener("load", function() {
+        $('#employer').select2({
+            placeholder: 'Название компании',
+            width: '100%'
+        });
+    })
+</script>

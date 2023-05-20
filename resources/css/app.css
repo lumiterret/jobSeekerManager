@@ -3,6 +3,13 @@
 @import "admin-lte/dist/css/adminlte.css";
 @import "admin-lte/plugins/select2/css/select2.min.css";
 
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    min-height: 2.31rem;
+}
+
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #007bff;
     border-color: #006fe6;
