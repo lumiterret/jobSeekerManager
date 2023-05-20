@@ -1,3 +1,25 @@
 @import "admin-lte/plugins/fontawesome-free/css/all.min.css";
-@import "admin-lte/dist/css/adminlte.css";
 @import "bootstrap/dist/css/bootstrap.css";
+@import "admin-lte/dist/css/adminlte.css";
+@import "admin-lte/plugins/select2/css/select2.min.css";
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #007bff;
+    border-color: #006fe6;
+    color: #fff;
+    padding: 0 10px;
+    margin: .31rem;
+}
+.select2-container .select2-search--inline .select2-search__field {
+    box-sizing: border-box;
+    border: none;
+    font-size: 100%;
+    margin: .31rem;
+    padding: 0;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: rgba(255, 255, 255, 0.7);
+    float: right;
+    margin-left: 5px;
+    margin-right: -2px;
+}

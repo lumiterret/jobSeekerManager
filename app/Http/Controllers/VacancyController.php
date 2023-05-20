@@ -81,12 +81,14 @@ class VacancyController extends Controller
 
         $employers = Employer::orderByDesc('created_at')->pluck('title', 'id');
         $people = Person::orderBy('f_name')->where('user_id', user()->id)->get();
+        $peopleAttached = $vacancy->people()->pluck('id')->toArray();
 
         return  view(
             'vacancies.tabs',
             compact(
                 'vacancy',
                 'people',
+                'peopleAttached',
                 'employers',
             )
         );
