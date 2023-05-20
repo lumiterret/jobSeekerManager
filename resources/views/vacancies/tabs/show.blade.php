@@ -75,14 +75,14 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
+                            <div class="col text-center">
                                 <form method="post" action="{{ route('vacancies.assign-people', $vacancy->id) }}">
                                     @csrf
                                     <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
                                     <div class="form-row mb-3">
                                         <select class="form-control"  name="people[]" id="people" multiple>
                                             @foreach($people as $person)
-                                                <option value="{{$person->id}}">
+                                                <option value="{{$person->id}}" @if(in_array($person->id, $peopleAttached))selected @endif>
                                                     {{ $person->full_name }}
                                                 </option>
                                             @endforeach
@@ -149,3 +149,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.addEventListener("load", function() {
+        $('#people').select2({
+            placeholder: 'Контактные лица'
+        });
+    })
+</script>
