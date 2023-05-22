@@ -1,3 +1,9 @@
+@csrf
+@if(isset($vacancy))
+    @method('put')
+    <input type="hidden" name="id" value="{{ $vacancy->id }}">
+@endif
+
 <div class="row">
     <div class="col-md-6 mb-3">
         <label class="col-form-label" for="title">

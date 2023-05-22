@@ -19,52 +19,16 @@
             </div>
         </div>
     </section>
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    {{-- Profile Image --}}
                     <div class="card card-primary card-outline">
-                        <div class="card-body box-profile">
-                            <div class="row">
-                                <div class="col col-md-3">
-                                    <div class="text-center">
-                                        <img class="profile-user-img img-fluid img-circle"
-                                             src="{{ Vite::asset('resources/img/avatar2.png') }}"
-                                             alt="User profile picture">
-                                    </div>
-                                    <h3 class="profile-username text-center">
-                                        {{ $person->full_name }}
-                                    </h3>
-                                    <p class="text-muted text-center">
-                                        {{ $person->position }}
-                                    </p>
-                                    <a href="#" id="toggle-button" class="btn btn-primary btn-block">
-                                        <b>Добавить контактные данные</b>
-                                    </a>
-                                </div>
-                                <div class="col col-md-9">
-                                    @include('contacts.index')
-                                    <div class="card card-primary card-outline d-none mt-3" id="add-info">
-                                        <div class="card-body">
-                                            @include('contacts.form')
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- /.card-body --}}
-                    </div>
-                    {{-- /.card --}}
-                </div>{{-- /.col --}}
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#vacancy" data-toggle="tab">Вакансии</a>
+                                    <a class="nav-link active" href="#browse-profile" data-toggle="tab">Профиль</a>
                                 </li>
                                 @if(user()->is_admin || $person->user_id === user()->id)
                                     <li class="nav-item">
@@ -75,21 +39,34 @@
                         </div> {{-- /.card-header --}}
                         <div class="card-body">
                             <div class="tab-content">
+                                <div class="active tab-pane" id="browse-profile">
+                                    {{-- Профиль --}}
+                                    @include('people.includes.show-tabs.browse-tab')
+                                </div>{{-- /.tab-pane Профиль--}}
+                                @if(user()->is_admin || $person->user_id === user()->id)
+                                    <div class="tab-pane" id="edit-profile">
+                                        @include('people.includes.show-tabs.edit-tab')
+                                    </div>{{-- /.tab-pane --}}
+                                @endif
+                            </div>{{-- /.tab-content --}}
+                        </div>
+                        {{-- /.card-body --}}
+                    </div>
+                    {{-- /.card --}}
+                </div>{{-- /.col --}}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <h3 class="card-title">Вакансии</h3>
+                        </div> {{-- /.card-header --}}
+                        <div class="card-body">
+                            <div class="tab-content">
                                 <div class="active tab-pane" id="vacancy">
                                     {{-- Вакансии --}}
                                     <x-vacancies.list-table :vacancies="$vacancies"/>
                                 </div>{{-- /.tab-pane Вакансии--}}
-                                @if(user()->is_admin || $person->user_id === user()->id)
-                                    <div class="tab-pane" id="edit-profile">
-                                        <form method="post" action="{{ route('people.update', [$person->id]) }}">
-                                            @csrf
-                                            @method('put')
-                                            <input type="hidden" name="id" value="{{ $person->id }}">
-                                            @include('people.form-fields')
-                                            <button type="submit" class="btn btn-success">Изменить</button>
-                                        </form>
-                                    </div>{{-- /.tab-pane --}}
-                                @endif
                             </div>{{-- /.tab-content --}}
                         </div> {{-- /.card-body --}}
                     </div> {{-- /.card --}}

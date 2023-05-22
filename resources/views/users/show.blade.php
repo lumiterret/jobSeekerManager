@@ -54,11 +54,11 @@
                             <div class="tab-content">
                                 <div class="active tab-pane" id="user-show">
                                     {{-- Просмотр --}}
-                                    @include('users.show-tabs.show')
+                                    @include('users.includes.show-tabs.browse-tab')
                                 </div>{{-- /.tab-pane Просмотр --}}
                                 <div class="tab-pane" id="user-edit">
                                     {{-- Редактирование --}}
-                                    @include('users.show-tabs.edit')
+                                    @include('users.includes.show-tabs.edit-tab')
                                 </div>{{-- /.tab-pane Редактирование--}}
                             </div>{{-- /.tab-content --}}
                         </div> {{-- /.card-body --}}

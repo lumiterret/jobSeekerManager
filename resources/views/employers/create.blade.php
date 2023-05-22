@@ -2,8 +2,6 @@
 
 @section('title', 'Добавление Компании')
 
-
-
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
@@ -36,10 +34,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <x-form method="post" action="{{ route('employers.store') }}">
-                    @include('employers.form-fields')
-                    <button type="submit" class="btn btn-success">Добавить</button>
-                </x-form>
+                <form method="post" action="{{ route('employers.store') }}">
+                    @include('employers.includes.form-fields')
+                </form>
             </div>
         </div>
     </section>

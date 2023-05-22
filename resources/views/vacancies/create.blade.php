@@ -34,10 +34,10 @@
                 </div>
             </div>
             <div class="card-body">
-                <x-form method="post" action="{{ route('vacancies.store') }}">
-                    @include('vacancies.form-fields')
+                <form method="post" action="{{ route('vacancies.store') }}">
+                    @include('vacancies.includes.form-fields')
                     <button type="submit" class="btn btn-success">Добавить</button>
-                </x-form>
+                </form>
             </div>
         </div>
     </section>

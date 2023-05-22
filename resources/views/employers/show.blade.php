@@ -40,7 +40,7 @@
                             <div class="col-12">
                                 <h4>Описание</h4>
                                 <div class="post" style="height: 80%">
-                                    @markdown {{ $employer->description }} @endmarkdown
+                                    @markdown{{ $employer->description }}@endmarkdown
                                 </div>
                             </div>
                         </div>
@@ -56,6 +56,18 @@
                                                 <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
                                                     {{ $vacancy->title }}
                                                 </a>
+                                                <div>
+                                                    Контактные лица:
+                                                    <ul>
+                                                        @foreach($vacancy->people()->get() as $person)
+                                                            <li>
+                                                                <a href="{{ route('people.show', [$person->id]) }}">
+                                                                    {{ $person->fullName }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </li>
                                         @endif
                                     @endforeach
@@ -63,9 +75,6 @@
                             @else
                                 Нет активных вакансий
                             @endif
-                            {{-- Ссылка на компанию --}}
-                            <h5 class="mt-5 text-muted">Контакты</h5>
-                            {{-- Список контактов --}}
                         </div>
                         @if(user()->is_admin || user()->id === $employer->user_id)
                             <div class="text-center mt-5 mb-3">

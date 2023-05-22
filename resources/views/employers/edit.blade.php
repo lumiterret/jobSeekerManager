@@ -22,12 +22,9 @@
     <section class="content">
         <div class="card card-primary">
             <div class="card-body">
-                @bind($employer)
-                <x-form method="put" action="{{ route('employers.update', [$employer->id]) }}">
-                    @include('employers.form-fields')
-                    <button type="submit" class="btn btn-success">Изменить</button>
-                </x-form>
-                @endbind
+                <form method="post" action="{{ route('employers.update', [$employer->id]) }}">
+                    @include('employers.includes.form-fields')
+                </form>
             </div>
         </div>
     </section>
