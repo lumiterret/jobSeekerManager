@@ -1,3 +1,8 @@
+@if(isset($user))
+    @csrf
+    @method('put')
+    <input type="hidden" name="id" value="{{ $user->id }}">
+@endif
 <div class="row">
     <div class="col-md-6 mb-3">
         <label class="col-form-label" for="title">
