@@ -36,7 +36,7 @@
             <div class="card-body">
                 <div class="row w-100">
                     <div class="col">
-                        @include('vacancies.index-filters')
+                        @include('vacancies.includes.index-filters')
                     </div>
                 </div>
             </div>

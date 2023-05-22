@@ -63,15 +63,15 @@
                             <div class="tab-content">
                                 <div class="active tab-pane" id="vacancy-show">
                                     {{-- Просмотр --}}
-                                    @include('vacancies.tabs.show')
+                                    @include('vacancies.includes.show-tabs.show')
                                 </div>{{-- /.tab-pane Просмотр --}}
                                 <div class="tab-pane" id="timeline">
                                     {{-- События --}}
-                                    @include('vacancies.tabs.timeline')
+                                    @include('vacancies.includes.show-tabs.timeline')
                                 </div>{{-- /.tab-pane События--}}
                                 <div class="tab-pane" id="vacancy-edit">
                                     {{-- Редактирование --}}
-                                    @include('vacancies.tabs.edit')
+                                    @include('vacancies.includes.show-tabs.edit')
                                 </div>{{-- /.tab-pane Редактирование--}}
                             </div>{{-- /.tab-content --}}
                         </div> {{-- /.card-body --}}
