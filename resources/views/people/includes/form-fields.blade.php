@@ -1,3 +1,8 @@
+@csrf
+@if(isset($person))
+    @method('put')
+    <input type="hidden" name="id" value="{{ $person->id }}">
+@endif
 <div class="mb-3">
     <label class="col-form-label" for="f_name">
         Имя
@@ -61,3 +66,11 @@
     <span class="error invalid-feedback">{{ $message }}</span>
     @enderror
 </div>
+
+<button type="submit" class="btn btn-success">
+    @if(isset($person))
+        Изменить
+    @else
+        Добавить
+    @endif
+</button>

@@ -36,10 +36,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <x-form method="post" action="{{ route('people.store') }}">
-                    @include('people.form-fields')
-                    <button type="submit" class="btn btn-success">Добавить</button>
-                </x-form>
+                <form method="post" action="{{ route('people.store') }}">
+                    @include('people.includes.form-fields')
+                </form>
             </div>
         </div>
     </section>
