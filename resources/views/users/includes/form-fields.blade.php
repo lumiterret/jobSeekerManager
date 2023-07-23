@@ -1,5 +1,5 @@
+@csrf
 @if(isset($user))
-    @csrf
     @method('put')
     <input type="hidden" name="id" value="{{ $user->id }}">
 @endif
