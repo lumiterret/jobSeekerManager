@@ -75,11 +75,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item"> {{-- Меню встреч --}}
+            <li class="nav-item"> {{-- Меню назначений --}}
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-calendar-alt"></i>
                     <p>
-                        Встречи
+                        Назначения
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>

@@ -28,6 +28,11 @@ class SettingsSync extends Command
             'description' => 'Бекап базы',
             'schedule_time' => '0 2 * * *',
         ],
+        [
+            'command' => 'appointments:status_change',
+            'description' => 'Автоматическое изменение статуса. Статус назначения дата которых старше пяти дней меняется на "Expired"',
+            'schedule_time' => '0 2 * * *',
+        ],
     ];
 
     /**

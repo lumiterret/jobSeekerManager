@@ -1,5 +1,5 @@
-<div class="row"> {{-- Встречи --}}
-    <div class="col-12"> {{-- Список встреч --}}
+<div class="row"> {{-- Назначения --}}
+    <div class="col-12"> {{-- Список назначений --}}
         <div class="timeline timeline-inverse">
             {{-- timeline time label --}}
             @if(count($vacancy->appointments))
@@ -12,13 +12,13 @@
                 {{-- /.timeline-label --}}
                 {{-- timeline item --}}
                 <div>
-                    <i class="fas fa-handshake bg-primary"></i> {{-- Иконка типа встречи цвет зависит от статуса --}}
+                    <i class="fas fa-handshake bg-primary"></i> {{-- Иконка типа назначения цвет зависит от статуса --}}
 
                     <div class="timeline-item">
-                        <span class="time"><i class="far fa-clock"></i> {{$appointment->date->format(' H:i')}}</span> {{-- Время встречи --}}
+                        <span class="time"><i class="far fa-clock"></i> {{$appointment->date->format(' H:i')}}</span> {{-- Время назначения --}}
 
                         <h3 class="timeline-header">
-                            <b>{{ $appointment->title }}</b> {{-- Заголовок со ссылкой на просмор? аппойнтмента --}}
+                            <b>{{ $appointment->title }}</b> {{-- Заголовок со ссылкой на просмор? назначения --}}
                         </h3>
 
                         <div class="timeline-body"> {{-- Описание события --}}
@@ -43,17 +43,17 @@
             {{-- /.timeline-label --}}
             {{-- timeline item --}}
             <div>
-                <i class="fas fa-handshake bg-secondary"></i> {{-- Иконка типа встречи цвет зависит от статуса --}}
+                <i class="fas fa-handshake bg-secondary"></i> {{-- Иконка типа назначения цвет зависит от статуса --}}
 
                 <div class="timeline-item">
-                    <span class="time"><i class="far fa-clock"></i> --:--</span> {{-- Время встречи --}}
+                    <span class="time"><i class="far fa-clock"></i> --:--</span> {{-- Время назначения --}}
 
                     <h3 class="timeline-header">
-                        Назначьте встречу  {{-- Заголовок со ссылкой на просмор? аппойнтмента --}}
+                        Создайте назначение  {{-- Заголовок со ссылкой на просмор? назначения --}}
                     </h3>
 
                     <div class="timeline-body"> {{-- Описание события --}}
-                        Ничего не найдено назначьте встречу
+                        Ничего не найдено создайте назначение
                     </div>
                     <div class="timeline-footer">
 
