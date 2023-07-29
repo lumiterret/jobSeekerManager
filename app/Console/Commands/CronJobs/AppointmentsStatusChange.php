@@ -23,7 +23,7 @@ class AppointmentsStatusChange extends AbstractScheduleCommand
      *
      * @var string
      */
-    protected $description = 'Автоматическое изменение статуса. Статус назначения дата которых старше пяти дней меняется на "Expired"';
+    protected $description = 'Автоматическое изменение статуса назначений.';
 
     /**
      * Execute the console command.
