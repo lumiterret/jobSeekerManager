@@ -13,6 +13,7 @@ use \App\Http\Controllers;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('auth/login', [Controllers\AuthController::class, 'login'])
@@ -26,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])
         ->name('logout');
 
-    Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
+    Route::get('/dashboard', [Controllers\MainController::class, 'dashboard'])->name('dashboard');
 
     Route::prefix('control/')->group(function () {
         Route::resource('users', Controllers\UserController::class)

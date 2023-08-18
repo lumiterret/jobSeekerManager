@@ -4,7 +4,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link">Обзор</a>
+            <a href="{{ route('dashboard') }}" class="nav-link">Обзор</a>
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -22,6 +22,10 @@
                         Выход
                     </a>
                 </div>
+            </li>
+        @else
+            <li class="nav-item">
+                <a href="{{ route('login') }}" class="nav-link">Вход</a>
             </li>
         @endif
     </ul>

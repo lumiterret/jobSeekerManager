@@ -9,8 +9,6 @@ use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     public function login(): View
     {
         return view('auth.login');
@@ -25,7 +23,7 @@ class AuthController extends Controller
 
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route($this->redirectTo);
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors([
@@ -40,6 +38,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route($this->redirectTo);
+        return redirect()->route('home');
     }
 }

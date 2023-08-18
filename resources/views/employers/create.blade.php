@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Обзор</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Обзор</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('employers.index') }}">Компании</a></li>
                         <li class="breadcrumb-item active">Добавление</li>
                     </ol>
