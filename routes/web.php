@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
             ->only(['index', 'show', 'create', 'store', 'update']);
         Route::resource('cron-jobs', Controllers\CronJobController::class)
             ->only(['index', 'create', 'store', 'edit', 'update']);
+        Route::get('cron-jobs/execute/{cron_job}', [Controllers\CronJobController::class, 'executeCronJob'])
+            ->name('cron-jobs.execute');
     });
 
     Route::resource('employers', Controllers\EmployerController::class)

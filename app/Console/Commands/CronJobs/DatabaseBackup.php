@@ -42,8 +42,6 @@ class DatabaseBackup extends AbstractScheduleCommand
 
         if (! $isFileExists) {
             $this->line('file not exists');
-
-            return;
         }
     }
 

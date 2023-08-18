@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Встреча - ' . $appointment->title)
+@section('title', 'Назначение - ' . $appointment->title)
 
 @section('content')
     <section class="content-header">
@@ -20,11 +20,11 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('appointments.index') }}">
-                                Встречи
+                                Назначения
                             </a>
                         </li>
                         <li class="breadcrumb-item active">
-                            Просмотр Встречи
+                            Просмотр Назначения
                         </li>
                     </ol>
                 </div>
@@ -61,7 +61,7 @@
                                             @include('appointments.status-form')
                                         </div>
                                     </div>
-                                </div>{{-- /.tab-pane Описание встречи--}}
+                                </div>{{-- /.tab-pane Описание Назначения--}}
                                 <div class="tab-pane" id="edit-appointment">
                                     <form method="post" action="{{ route('appointments.update', [$appointment->id]) }}">
                                         @csrf

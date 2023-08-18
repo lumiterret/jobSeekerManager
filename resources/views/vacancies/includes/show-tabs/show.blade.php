@@ -39,9 +39,9 @@
                 </div> {{-- /Статус--}}
             </div>
             <div class="col-12 col-md-12 col-lg-4">
-                <div class="card card-primary card-outline collapsed-card"> {{-- Назначение встречи --}}
+                <div class="card card-primary card-outline collapsed-card"> {{-- Назначение --}}
                     <div class="card-header">
-                        <h3 class="card-title">Назначить встречу</h3>
+                        <h3 class="card-title">Назначить</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-plus"></i>
@@ -58,7 +58,7 @@
                             @include('appointments.form-fields')
                         </form>
                     </div>
-                </div> {{-- /Назначение встречи --}}
+                </div> {{-- /Назначение --}}
             </div>
             <div class="col-12 col-md-12 col-lg-4">
                 <div class="card card-primary card-outline collapsed-card"> {{-- Добавление контактов --}}
