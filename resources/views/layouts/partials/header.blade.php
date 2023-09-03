@@ -1,11 +1,14 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav
+    class="navbar navbar-white navbar-light @if(auth()->user()) navbar-expand main-header @endif">
     <ul class="navbar-nav">
+        @if(auth()->user())
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item">
-            <a href="{{ route('dashboard') }}" class="nav-link">Обзор</a>
-        </li>
+            <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link">Обзор</a>
+            </li>
+        @endif
     </ul>
     <ul class="navbar-nav ml-auto">
         @if(auth()->user())

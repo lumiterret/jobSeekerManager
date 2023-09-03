@@ -8,13 +8,13 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
     </head>
-    <body class="sidebar-mini layout-fixed  sidebar-collapse" style="height: auto">
+    <body>
         <div class="wrapper">
             <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
                 <img class="animation__shake" src="{{ Vite::asset('resources/img/logo.png') }}" alt="logo" height="60" width="60" style="display: none;">
             </div>
             @include('layouts.partials.header')
-            <main class="content-wrapper" style="height: auto;">
+            <main>
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
                         <ul>
