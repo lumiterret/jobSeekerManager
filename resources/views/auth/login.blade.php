@@ -10,7 +10,7 @@
             <form method="post" action="{{ route('login') }}">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}">
+                    <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="Username" value="{{ old('username') }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -18,25 +18,35 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block" type="submit">{{__('Log in')}}</button>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">
+                                Запомнить
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">{{__('Log in')}}</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
             </form>
             @if ( $errors->count() > 0 )
                 <div class="alert alert-danger alert-dismissible mt-3">
                     <p class="login-box-msg">...Что то пошло не по плану...</p>
-                    <ul>
-                        @foreach( $errors->all() as $message )
-                            <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
                 </div>
             @endif
+            <a href="{{-- route('password.request') --}}" class="text-sm font-medium text-green-600 hover:text-green-500">Напомнить пароль?</a>
         </div>
     </div>
 @endsection

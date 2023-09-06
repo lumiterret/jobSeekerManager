@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +16,15 @@ use \App\Http\Controllers;
 Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
-    Route::get('auth/login', [Controllers\AuthController::class, 'login'])
+    Route::get('auth/login', [Controllers\Auth\LoginController::class, 'login'])
         ->name('login');
 
-    Route::post('auth/login', [Controllers\AuthController::class, 'authenticate'])
+    Route::post('auth/login', [Controllers\Auth\LoginController::class, 'authenticate'])
         ->name('authenticate');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])
+    Route::get('/auth/logout', [Controllers\Auth\LoginController::class, 'logout'])
         ->name('logout');
 
     Route::get('/dashboard', [Controllers\MainController::class, 'dashboard'])->name('dashboard');
