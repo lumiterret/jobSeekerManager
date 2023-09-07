@@ -33,7 +33,7 @@ class LoginController extends Controller
         }
 
         $request->session()->regenerate();
-        return redirect()->intended('dashboard');
+        return redirect()->intended(RouteServiceProvider::DASHBOARD);
     }
 
     public function logout(Request $request): RedirectResponse
@@ -43,6 +43,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route(RouteServiceProvider::HOME);
     }
 }

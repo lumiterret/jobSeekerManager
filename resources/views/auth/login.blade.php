@@ -6,11 +6,10 @@
             <a href="/" class="h1">Job Seeker</a>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
             <form method="post" action="{{ route('login') }}">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="Username" value="{{ old('username') }}">
+                    <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="Логин" value="{{ old('username') }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -18,7 +17,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" placeholder="Password">
+                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" placeholder="Пароль">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

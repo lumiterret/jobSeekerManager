@@ -16,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Controllers\MainController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
+    Route::get('/register', [Controllers\Auth\RegisterController::class, 'create'])
+        ->name('register');
+    Route::post('/register', [Controllers\Auth\RegisterController::class, 'store'])
+        ->name('membership.create');
+
     Route::get('auth/login', [Controllers\Auth\LoginController::class, 'login'])
         ->name('login');
-
     Route::post('auth/login', [Controllers\Auth\LoginController::class, 'authenticate'])
         ->name('authenticate');
 });
