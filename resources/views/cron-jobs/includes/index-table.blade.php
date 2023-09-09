@@ -13,6 +13,9 @@
         <th style="width: 10%">
             Активность
         </th>
+        <th style="width: 10%">
+            Действия
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -34,6 +37,9 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" @if($job->is_active) checked @endif disabled>
                     </div>
+                </td>
+                <td>
+                    <a href="{{ route('cron-jobs.execute', [$job->id]) }}"><button class="btn btn-success">Запустить</button></a>
                 </td>
             </tr>
         @endforeach

@@ -49,7 +49,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#timeline" data-toggle="tab">
-                                        Встречи
+                                        Назначения
                                     </a>
                                 </li>
                                 <li class="nav-item">

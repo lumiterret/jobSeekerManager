@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFour();
         if (env('APP_FORCE_HTTPS', false)) {
+            $this->app['request']->server->set('HTTPS','on');
             URL::forceScheme('https');
         }
         Validator::extend('cron', function ($attribute, $value, $parameters, $validator) {

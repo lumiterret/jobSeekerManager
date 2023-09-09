@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Cron\StoreCronJobRequest;
 use App\Models\CronJob;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Request;
 
 class CronJobController extends Controller
 {
@@ -71,5 +73,12 @@ class CronJobController extends Controller
         }
         $cronJob->is_active = $isActive;
         $cronJob->save();
+    }
+
+    public function executeCronJob (Request $request, CronJob $cronJob)
+    {
+        $error = 'без ошибок';
+        Artisan::call($cronJob->command);
+        return redirect()->route('cron-jobs.index')->withErrors(['msg' => 'Команда ['. $cronJob->command . '] отработала ' . $error]);
     }
 }
