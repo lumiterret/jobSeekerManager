@@ -6,25 +6,14 @@
             <a href="/" class="h1">Job Seeker</a>
         </div>
         <div class="card-body">
-            <form method="post" action="{{ route('membership.create') }}">
+            <form method="post" action="{{ route('password.update') }}">
                 @csrf
+                <input type="hidden" name="token" value="{{ $request->token }}">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="Логин" value="{{ old('username') }}">
+                    <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" placeholder="Email" value="{{ old('email', $request->email) }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-
-                    @error('username')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" placeholder="Email" value="{{ old('email') }}">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
 
@@ -57,14 +46,13 @@
                     @enderror
                 </div>
                 <div class="row">
-                    <div  class="flex-grow-1">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            {{__('Sign Up')}}
-                        </button>
+                    <!-- /.col -->
+                    <div class="flex-grow-1">
+                        <button type="submit" class="btn btn-primary btn-block">{{__('Reset')}}</button>
                     </div>
+                    <!-- /.col -->
                 </div>
             </form>
-            <a href="{{ route('login') }}" class="text-sm font-medium text-green-600 hover:text-green-500">У меня есть аккаунт</a>
         </div>
     </div>
 @endsection

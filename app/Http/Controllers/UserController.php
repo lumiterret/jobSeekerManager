@@ -77,6 +77,7 @@ class UserController extends Controller
     private function fillUser(User $user, array $data)
     {
         $user->username = $data['username'];
+        $user->email = $data['email'];
         if ($data['password']) {
             $user->password = bcrypt($data['password']);
         }

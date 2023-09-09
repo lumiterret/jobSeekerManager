@@ -38,9 +38,16 @@ class StoreRequest extends FormRequest
             Rule::unique('users')->ignore($id),
         ];
 
-        $password = $create ? '|min:6' : '';
+        $email = [
+            'required',
+            'email',
+            Rule::unique('users')->ignore($id),
+        ];
+
+        $password = $create ? '|min:8' : '';
         return [
             'username' => $username,
+            'email' => $email,
             'password' => 'required_if:create,true' . $password,
             'is_admin' => 'boolean',
         ];

@@ -20,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
+        'email',
         'password',
         'is_admin',
     ];
@@ -41,5 +42,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'is_admin' => 'boolean',
+        'email_verified_at' => 'datetime',
     ];
 }
