@@ -1,14 +1,17 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav
+    class="navbar navbar-white navbar-light navbar-expand main-header">
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link">Обзор</a>
-        </li>
+        @if(!Route::is('home'))
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link">Обзор</a>
+            </li>
+        @endif
     </ul>
     <ul class="navbar-nav ml-auto">
-        @if(auth()->user())
+        @auth
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="{{ Vite::asset('resources/img/avatar.png') }}" class="user-image img-circle elevation-2" alt="User Image">
@@ -23,6 +26,13 @@
                     </a>
                 </div>
             </li>
-        @endif
+        @else
+            <li class="nav-item">
+                <a href="{{ route('register') }}" class="nav-link">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('login') }}" class="nav-link">Вход</a>
+            </li>
+        @endauth
     </ul>
 </nav>

@@ -26,6 +26,27 @@
         @enderror
     </div>
     <div class="col-md-6 mb-3">
+        <label class="col-form-label" for="title">
+            Email
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            class="form-control @error('email')is-invalid @enderror"
+            type="text" id="email"
+            name="email"
+            @if(isset($user))
+                value="{{ old('email') ?? $user->email }}"
+            @else
+                value="{{ old('email') }}"
+            placeholder="Введите email"
+            @endif
+            required
+        />
+        @error('email')
+        <span class="error invalid-feedback">{{ $message }}</span>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-3">
         <label class="col-form-label" for="password">
             Пароль
             @if(!isset($user))

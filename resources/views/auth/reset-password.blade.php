@@ -6,24 +6,18 @@
             <a href="/" class="h1">Job Seeker</a>
         </div>
         <div class="card-body">
-            @if (session('status'))
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icon fas fa-info"></i> Внимание!</h5>
-                    {{ session('status') }}
-                </div>
-            @endif
-            <form method="post" action="{{ route('login') }}">
+            <form method="post" action="{{ route('password.update') }}">
                 @csrf
+                <input type="hidden" name="token" value="{{ $request->token }}">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="Логин" value="{{ old('username') }}">
+                    <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" placeholder="Email" value="{{ old('email', $request->email) }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
 
-                    @error('username')
+                    @error('email')
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>
@@ -39,24 +33,26 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">
-                                Запомнить
-                            </label>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" name="password_confirmation" placeholder="Подтверждение пароля">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
                         </div>
                     </div>
+
+                    @error('password_confirmation')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="row">
                     <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">{{__('Log in')}}</button>
+                    <div class="flex-grow-1">
+                        <button type="submit" class="btn btn-primary btn-block">{{__('Reset')}}</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
-            <a href="{{ route('password.request') }}" class="text-sm font-medium text-green-600 hover:text-green-500">Сбросить пароль?</a><br>
-            <a href="{{ route('register') }}" class="text-sm font-medium text-green-600 hover:text-green-500">Зарегистрировать аккаунт</a>
         </div>
     </div>
 @endsection
