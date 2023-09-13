@@ -6,6 +6,7 @@
             <a href="/" class="h1">Job Seeker</a>
         </div>
         <div class="card-body">
+            <p class="card-text">На ваш email указанный при регистрации было отправлено письмо со ссылкой для подтверждения. Если по какой либо причине вы его не получили, вы можете запросить его повторно кликнув по кнопке ниже.</p>
             @if (session('status'))
                 <div class="alert alert-info alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
