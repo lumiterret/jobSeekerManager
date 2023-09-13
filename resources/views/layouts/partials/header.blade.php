@@ -5,10 +5,10 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-            <li class="nav-item">
+        @endif
+             <li class="nav-item">
                 <a href="{{ route('dashboard') }}" class="nav-link">Обзор</a>
             </li>
-        @endif
     </ul>
     <ul class="navbar-nav ml-auto">
         @auth

@@ -25,8 +25,8 @@
                     </div>
                 @endif
                 @yield('content')
-                tiokn
             </main>
+            @include('layouts.partials.footer')
         </div>
     </body>
 </html>
