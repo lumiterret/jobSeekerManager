@@ -28,7 +28,7 @@ class LoginController extends Controller
 
         if (!auth()->attempt($credentials, $request->boolean('remember'))) {
             throw ValidationException::withMessages([
-                'email' => __('auth.failed')
+                'username' => __('auth.failed')
             ]);
         }
 
