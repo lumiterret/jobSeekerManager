@@ -32,7 +32,14 @@ class VacancyController extends Controller
                 $builder->where('title', 'LIKE', $employer);
             });
         }
+
+        if ($filters->isFavorite) {
+            $employer = '%' . $filters->employer . '%';
+            $query->where('is_favorite', true);
+        }
+
         $query->whereIn('vacancies.status', $filters->status)->orderByDesc('vacancies.created_at');
+
         $vacancies = $query->paginate(20);
 
         return view(
