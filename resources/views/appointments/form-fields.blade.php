@@ -1,5 +1,5 @@
 
-<div class="form-row">
+<div class="form-row mb-2">
     <div class="col">
         <label for="title">
             Название
@@ -24,9 +24,12 @@
     </div>
 </div>
 <div>
-    <div class="form-row">
+    <div class="form-row mb-2">
         <div class="col">
-            <label for="date" class="form-label">Дата</label>
+            <label for="date" class="form-label">
+                Дата
+                <span class="text-danger">*</span>
+            </label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
@@ -74,6 +77,22 @@
         </div>
     </div>
     <div class="form-row mb-2">
+        <div class="col">
+            <div class="icheck-primary">
+                <input
+                    type="checkbox"
+                    id="all-day"
+                    name="all-day"
+                    value="1"
+                    @if(isset($appointment) && $appointment->is_all_day)
+                        checked
+                    @endif
+                >
+                <label for="all-day">
+                    Весь день
+                </label>
+            </div>
+        </div>
     </div>
 
     <div class="form-row">
