@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('people', Controllers\PersonController::class)
             ->parameters(['people' => 'id'])
             ->only(['index', 'show', 'create', 'store', 'update']);
-        Route::resource('contact', Controllers\ContacController::class)
+        Route::resource('contact', Controllers\ContactController::class)
             ->parameters(['contact' => 'id'])
             ->only(['store', 'destroy']);
         Route::resource('appointments', Controllers\AppointmentController::class)
