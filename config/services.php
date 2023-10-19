@@ -31,4 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'notification' => [
+        'telegram' => [
+            'feedback_bot' => [
+                'token' => env('JS_MANAGER_BOT_TOKEN', ''),
+                'chat_ids' => env('JS_MANAGER_CHAT_IDS', ''),
+            ]
+        ],
+    ],
+
 ];

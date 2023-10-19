@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
                 ->only(['index', 'create', 'store', 'edit', 'update']);
         Route::get('cron-jobs/execute/{cron_job}', [Controllers\CronJobController::class, 'executeCronJob'])
             ->name('cron-jobs.execute');
-    });
+        });
 
         Route::resource('employers', Controllers\EmployerController::class)
             ->parameters(['employers' => 'id'])
@@ -91,5 +91,8 @@ Route::middleware('auth')->group(function () {
 
         Route::put('appointments/status-change', [Controllers\AppointmentController::class, 'changeStatus'])
             ->name('appointments.status-change');
+
+        Route::get('feed-back', [Controllers\FeedBackController::class, 'create'])->name('feed-back.create');
+        Route::post('feed-back', [Controllers\FeedBackController::class, 'store'])->name('feed-back.store');
     });
 });
