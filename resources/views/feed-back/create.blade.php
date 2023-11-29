@@ -38,8 +38,7 @@
                     </button>
                 </div>--}}
             </div>
-            <div class="card-body row">
-
+            <div class="card-body">
                 <div class="col-lg-7">
                     <form method="post" action="{{ route('feed-back.store') }}">
                         @csrf
@@ -54,7 +53,10 @@
                         </div>--}}
                         <div class="form-group">
                             <label for="inputMessage">Ваше сообщение</label>
-                            <textarea id="inputMessage" class="form-control" rows="4" name="content" required value="{{ old('content') }}"></textarea>
+                            <textarea
+                                id="inputMessage"
+                                class="form-control feedback"
+                                name="content">{{ old('content') }}</textarea>
                         </div>
                         {{--@include('users.includes.form-fields')--}}
                         <button type="submit" class="btn btn-success">Отправить</button>
