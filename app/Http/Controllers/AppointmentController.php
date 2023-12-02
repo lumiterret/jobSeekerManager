@@ -118,11 +118,11 @@ class AppointmentController extends Controller
      */
     private function fillAppointment(mixed $data, Appointment $appointment): void
     {
-        if(!$data['start_time']) {
+        if(array_key_exists('all-day', $data) || !$data['start_time']) {
             $data['all-day'] = true;
-        }
-        if($data['all-day']) {
             $data['start_time'] = '00:00';
+        } else {
+            $data['all-day'] = false;
         }
 
         $appointment->title = $data['title'];
