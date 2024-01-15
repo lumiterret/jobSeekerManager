@@ -15,11 +15,8 @@ class Appointment extends Model
 
     protected $fillable = [
         'vacancy_id',
-        'start_date',
-        'end_date',
         'is_all_day',
-        'start_time',
-        'end_time',
+        'date',
         'title',
         'description',
         'meeting',
