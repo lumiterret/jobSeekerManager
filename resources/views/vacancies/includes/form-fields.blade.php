@@ -76,6 +76,27 @@
         @enderror
     </div>
 </div>
+@if(isset($vacancy))
+<div class="row">
+    <div class="col-md mb-3">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="is_favorite"
+                name="is_favorite"
+                value="1"
+                @if($vacancy->is_favorite)
+                    checked
+                @endif
+            >
+            <label class="form-check-label" for="is_favorite">
+                В избранном
+            </label>
+        </div>
+    </div>
+</div>
+@endif
 
 <script>
     window.addEventListener("load", function() {

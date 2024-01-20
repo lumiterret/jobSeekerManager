@@ -44,8 +44,8 @@
                     <x-vacancies.status-badge :status="$vacancy->status"/>
                 </td>
                 <td>
-                    <a href="#" class="{{ $vacancy->is_favorite ? 'text-warning': 'text-gray'}}"><i class="fas fa-star"></i>
-                    </a>
+                    <span class="{{ $vacancy->is_favorite ? 'text-warning': 'text-gray'}}"><i class="fas fa-star"></i>
+                    </span>
                 </td>
             </tr>
         @endforeach

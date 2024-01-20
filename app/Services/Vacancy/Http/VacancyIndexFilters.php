@@ -14,7 +14,7 @@ class VacancyIndexFilters
     public function __construct(Request $request)
     {
         $filters = [
-            'status' => $request->get('status', [Vacancy::STATUS_ACTIVE]),
+            'status' => $request->get('status'),
             'employer' => strtolower($request->get('employer')),
             'isFavorite' => $request->get('is_favorite'),
         ];

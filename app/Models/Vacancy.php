@@ -18,6 +18,7 @@ class Vacancy extends Model
     protected $fillable = [
         'title',
         'description',
+        'is_favorite',
     ];
 
     public function employer()
