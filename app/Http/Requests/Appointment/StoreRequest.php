@@ -25,9 +25,10 @@ class StoreRequest extends FormRequest
             'title' => 'required|string',
             'vacancy_id' => 'required',
             'date' => 'required|date',
-            'start_time' => 'required',
+            'start_time' => 'nullable|date_format:H:i',
+            'all-day' => 'boolean',
             'description' => 'nullable|string',
-            'meeting' => 'nullable|url'
+            'meeting' => 'nullable|url',
         ];
     }
 }
