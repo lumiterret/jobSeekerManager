@@ -9,6 +9,7 @@ use App\Models\Vacancy;
 use App\Services\Vacancy\Http\VacancyIndexFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class VacancyController extends Controller
 {
@@ -32,7 +33,17 @@ class VacancyController extends Controller
                 $builder->where('title', 'LIKE', $employer);
             });
         }
-        $query->whereIn('vacancies.status', $filters->status)->orderByDesc('vacancies.created_at');
+
+        if (is_bool($filters->isFavorite)) {
+            $query->where('is_favorite', $filters->isFavorite);
+        }
+
+        if (!empty($filters->status)) {
+            $query->whereIn('vacancies.status', $filters->status);
+        }
+
+        $query->orderByDesc('vacancies.created_at');
+
         $vacancies = $query->paginate(20);
 
         return view(
@@ -60,12 +71,7 @@ class VacancyController extends Controller
     {
         $data = $request->validated();
         $vacancy = new Vacancy();
-        $vacancy->title = $data['title'];
-        $vacancy->description = $data['description'];
-        $vacancy->user_id = user()->id;
-        if(isset($data['employer_id'])) {
-            $vacancy->employer_id = $data['employer_id'];
-        }
+        $this->fillVacancy($vacancy, $data);
         $vacancy->save();
         return redirect()->route('vacancies.show', [$vacancy->id]);
     }
@@ -104,9 +110,7 @@ class VacancyController extends Controller
 
         $this->authorize('update', $vacancy);
 
-        $vacancy->title = $data['title'];
-        $vacancy->description = $data['description'];
-        $vacancy->employer_id = $data['employer_id'];
+        $this->fillVacancy($vacancy, $data);
         $vacancy->save();
         return redirect()->route('vacancies.show', [$vacancy->id]);
     }
@@ -139,5 +143,20 @@ class VacancyController extends Controller
         $vacancy->save();
 
         return redirect()->back();
+    }
+
+    private function fillVacancy(Vacancy $vacancy,array $data)
+    {
+        $vacancy->title = $data['title'];
+        $vacancy->description = $data['description'];
+        $vacancy->user_id = user()->id;
+        if(isset($data['employer_id'])) {
+            $vacancy->employer_id = $data['employer_id'];
+        }
+        $isFavorite = false;
+        if (Arr::exists($data, 'is_favorite')) {
+            $isFavorite = $data['is_favorite'];
+        }
+        $vacancy->is_favorite = $isFavorite;
     }
 }

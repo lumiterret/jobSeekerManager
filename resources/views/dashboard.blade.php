@@ -50,6 +50,21 @@
                     </div>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ $vacanciesFavoriteCount }}</h3>
+
+                            <p>Избранные вакансии</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <a href="{{ route('vacancies.index',['is_favorite'=>'1']) }}" class="small-box-footer">Просмотреть <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
             </div>
         </div>
     </section>

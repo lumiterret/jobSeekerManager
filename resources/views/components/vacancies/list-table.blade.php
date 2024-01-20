@@ -15,6 +15,9 @@
         <th style="width: 8%" class="text-center">
             Статус
         </th>
+        <th style="width: 8%" class="text-center">
+            В избранном
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -39,6 +42,10 @@
                 </td>
                 <td>
                     <x-vacancies.status-badge :status="$vacancy->status"/>
+                </td>
+                <td>
+                    <span class="{{ $vacancy->is_favorite ? 'text-warning': 'text-gray'}}"><i class="fas fa-star"></i>
+                    </span>
                 </td>
             </tr>
         @endforeach
