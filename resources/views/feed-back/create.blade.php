@@ -52,11 +52,18 @@
                             <input type="text" id="inputPhone" class="form-control">
                         </div>--}}
                         <div class="form-group">
-                            <label for="inputMessage">Ваше сообщение</label>
-                            <textarea
-                                id="inputMessage"
-                                class="form-control feedback"
-                                name="content">{{ old('content') }}</textarea>
+                            <label for="inputMessage">Ваше сообщение<br> <small>не более 3 000 символов</small></label>
+                            <div class="container-feedback">
+                                <textarea
+                                    id="inputMessage"
+                                    class="form-control feedback"
+                                    name="content">{{ old('content') }}</textarea>
+
+                                <div class="counter">
+                                    <span class="current">0</span>&nbsp;/
+                                    <span class="total">3000</span>
+                                </div>
+                            </div>
                         </div>
                         {{--@include('users.includes.form-fields')--}}
                         <button type="submit" class="btn btn-success">Отправить</button>

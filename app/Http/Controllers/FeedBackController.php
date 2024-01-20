@@ -25,7 +25,7 @@ class FeedBackController extends Controller
     {
         $validated = $request->validate([
             'user-id' => 'required',
-            'content' => 'required|string'
+            'content' => 'required|string|max:4000'
         ]);
         $feedback = new Feedback();
         $feedback->user_id = $validated['user-id'];
