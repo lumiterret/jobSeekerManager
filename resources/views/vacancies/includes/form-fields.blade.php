@@ -28,9 +28,7 @@
     <div class="col-md-6 mb-3">
         <label for="employer" class="col-form-label">
             Компания
-            @if(isset($vacancy))
-                <span class="text-danger">*</span>
-            @endif
+            <span class="text-danger">*</span>
         </label>
         <div>
             <select
