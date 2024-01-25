@@ -26,7 +26,8 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|min:6',
             'description' => 'required|min:20|max:65535',
-            'employer_id' => ['nullable', Rule::exists(Employer::class, 'id')]
+            'is_favorite' => 'nullable|boolean',
+            'employer_id' => ['required', Rule::exists(Employer::class, 'id')]
         ];
     }
 

@@ -28,9 +28,7 @@
     <div class="col-md-6 mb-3">
         <label for="employer" class="col-form-label">
             Компания
-            @if(isset($vacancy))
-                <span class="text-danger">*</span>
-            @endif
+            <span class="text-danger">*</span>
         </label>
         <div>
             <select
@@ -60,22 +58,42 @@
         <span class="error invalid-feedback">{{ $message }}</span>
         @enderror
     </div>
-    <div class="col mb-3">
-        <label class="col-form-label" for="description">
-            Описание вакансии
-            <span class="text-danger">*</span>
-        </label>
-        <textarea
-            class="form-control @error('description')is-invalid @enderror"
-            name="description"
-            id="description"
-            rows="10"
-        >@if(isset($vacancy)){{ old('description') ?? $vacancy->description }}@else{{ old('description') }}@endif</textarea>
-        @error('description')
-        <span class="error invalid-feedback">{{ $message }}</span>
-        @enderror
+</div>
+<div class="col mb-3">
+    <label class="col-form-label" for="description">
+        Описание вакансии
+        <span class="text-danger">*</span>
+    </label>
+    <textarea
+        class="form-control @error('description')is-invalid @enderror"
+        name="description"
+        id="description"
+    >@if(isset($vacancy)){{ old('description') ?? $vacancy->description }}@else{{ old('description') }}@endif</textarea>
+    @error('description')
+    <span class="error invalid-feedback">{{ $message }}</span>
+    @enderror
+</div>
+@if(isset($vacancy))
+<div class="row">
+    <div class="col-md mb-3">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="is_favorite"
+                name="is_favorite"
+                value="1"
+                @if($vacancy->is_favorite)
+                    checked
+                @endif
+            >
+            <label class="form-check-label" for="is_favorite">
+                В избранном
+            </label>
+        </div>
     </div>
 </div>
+@endif
 
 <script>
     window.addEventListener("load", function() {

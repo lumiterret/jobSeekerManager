@@ -11,3 +11,16 @@ import.meta.glob([
 
 window.jQuery = window.$ = $;
 window.select2 = select2();
+
+// счётчик символов в текстовом поле
+const textarea = document.querySelector('textarea.feedback');
+const counter = document.querySelector('.current');
+const maxlength = 3000;
+
+textarea.addEventListener('input', onInput)
+
+function onInput(event) {
+    console.log(event);
+    event.target.value = event.target.value.slice(0, maxlength); // обрезаем текст до 4000 символов
+    counter.textContent = event.target.value.length;
+}

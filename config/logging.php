@@ -123,6 +123,11 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/cron-job/cron-job.log')
         ],
+
+        'notification' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/notification/notification.log')
+        ],
     ],
 
 ];

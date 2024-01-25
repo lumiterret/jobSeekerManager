@@ -17,11 +17,13 @@ class MainController extends Controller
         $user = user();
         $vacanciesDraftCount = Vacancy::whereStatus('draft')->whereUserId($user->id)->count();
         $vacanciesActiveCount = Vacancy::whereStatus('active')->whereUserId($user->id)->count();
+        $vacanciesFavoriteCount = Vacancy::whereIsFavorite(1)->whereUserId($user->id)->count();
         return view(
             'dashboard',
             compact(
                 'vacanciesDraftCount',
-                'vacanciesActiveCount'
+                'vacanciesActiveCount',
+                'vacanciesFavoriteCount'
             )
         );
     }
