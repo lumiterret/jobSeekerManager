@@ -9,6 +9,11 @@
              <li class="nav-item">
                 <a href="{{ route('dashboard') }}" class="nav-link">Обзор</a>
             </li>
+        @if(Auth::user())
+                <li class="nav-item">
+                    <a href="{{ route('feed-back.create') }}" class="nav-link">Обратная связь</a>
+                </li>
+        @endif
     </ul>
     <ul class="navbar-nav ml-auto">
         @auth

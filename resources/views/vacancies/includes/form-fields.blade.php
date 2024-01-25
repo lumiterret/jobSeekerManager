@@ -60,21 +60,20 @@
         <span class="error invalid-feedback">{{ $message }}</span>
         @enderror
     </div>
-    <div class="col mb-3">
-        <label class="col-form-label" for="description">
-            Описание вакансии
-            <span class="text-danger">*</span>
-        </label>
-        <textarea
-            class="form-control @error('description')is-invalid @enderror"
-            name="description"
-            id="description"
-            rows="10"
-        >@if(isset($vacancy)){{ old('description') ?? $vacancy->description }}@else{{ old('description') }}@endif</textarea>
-        @error('description')
-        <span class="error invalid-feedback">{{ $message }}</span>
-        @enderror
-    </div>
+</div>
+<div class="col mb-3">
+    <label class="col-form-label" for="description">
+        Описание вакансии
+        <span class="text-danger">*</span>
+    </label>
+    <textarea
+        class="form-control @error('description')is-invalid @enderror"
+        name="description"
+        id="description"
+    >@if(isset($vacancy)){{ old('description') ?? $vacancy->description }}@else{{ old('description') }}@endif</textarea>
+    @error('description')
+    <span class="error invalid-feedback">{{ $message }}</span>
+    @enderror
 </div>
 @if(isset($vacancy))
 <div class="row">
