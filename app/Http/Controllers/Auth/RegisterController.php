@@ -22,12 +22,16 @@ class RegisterController extends Controller
         $validated = $request->validate([
             'username' => ['required', 'string', 'unique:users'],
             'email' => ['required', 'string', 'email', 'unique:users'],
-            'password' => ['required', 'confirmed', 'min:8']
+            'password' => ['required', 'confirmed', 'min:8'],
+            'check-bot' => ['nullable'],
         ]);
 
+        if($validated['check-bot']) {
+            return redirect(RouteServiceProvider::HOME);
+        }
         $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
+            'username' => $validated['username'],
+            'email' => $validated['email'],
             'password' => Hash::make($request->password)
         ]);
 
