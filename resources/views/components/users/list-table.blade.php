@@ -9,6 +9,12 @@
         <th style="width: 25%">
             Логин
         </th>
+        <th>
+            Дата активации
+        </th>
+        <th>
+            Дата последнего входа
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -21,8 +27,14 @@
                     </a>
                     <br>
                     <small>
-                        {{ $user->created_at }}
+                        Зарегистрирован: {{ $user->created_at }}
                     </small>
+                </td>
+                <td>
+                    {{ $user->email_verified_at }}
+                </td>
+                <td>
+                    {{ $user->last_login }}
                 </td>
             </tr>
         @endforeach
