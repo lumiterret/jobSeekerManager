@@ -12,8 +12,8 @@
         <th style="width: 25%">
             Компания
         </th>
-        <th style="width: 8%" class="text-center">
-            Статус
+        <th style="width: 25%" class="text-center">
+            Последнее назначение
         </th>
         <th style="width: 8%" class="text-center">
             В избранном
@@ -28,6 +28,7 @@
                     <a href="{{ route('vacancies.show', [$vacancy->id]) }}">
                         {{ $vacancy->title }}
                     </a>
+                    <x-vacancies.status-badge :status="$vacancy->status"/>
                     <br>
                     <small>
                         {{ $vacancy->created_at }}
@@ -41,9 +42,12 @@
                     @endif
                 </td>
                 <td>
-                    <x-vacancies.status-badge :status="$vacancy->status"/>
+                    @if($vacancy->lastAppointment())
+                        <a href="{{ route('appointments.show', [$vacancy->lastAppointment()->id]) }}">{{ $vacancy->lastAppointment()->title }}</a>
+                        <x-appointments.status-badge :status="$vacancy->lastAppointment()->status"/>
+                    @endif
                 </td>
-                <td>
+                <td class="text-center">
                     <span class="{{ $vacancy->is_favorite ? 'text-warning': 'text-gray'}}"><i class="fas fa-star"></i>
                     </span>
                 </td>
