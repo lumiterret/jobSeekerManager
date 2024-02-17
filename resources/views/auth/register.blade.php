@@ -63,6 +63,13 @@
                         </button>
                     </div>
                 </div>
+                <input
+                    class="d-none"
+                    type="checkbox"
+                    id="check-bot"
+                    name="check-bot"
+                    value="1"
+                >
             </form>
             <a href="{{ route('login') }}" class="text-sm font-medium text-green-600 hover:text-green-500">У меня есть аккаунт</a>
         </div>

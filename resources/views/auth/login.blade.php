@@ -56,7 +56,9 @@
                 </div>
             </form>
             <a href="{{ route('password.request') }}" class="text-sm font-medium text-green-600 hover:text-green-500">Сбросить пароль?</a><br>
-            <a href="{{ route('register') }}" class="text-sm font-medium text-green-600 hover:text-green-500">Зарегистрировать аккаунт</a>
+                @if(env('APP_ENV') === 'prod')
+                    <a href="{{ route('register') }}" class="text-sm font-medium text-green-600 hover:text-green-500">Зарегистрировать аккаунт</a>
+                @endif
         </div>
     </div>
 @endsection

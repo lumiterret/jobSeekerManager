@@ -32,9 +32,11 @@
                 </div>
             </li>
         @else
+            @if(env('APP_ENV') === 'prod')
             <li class="nav-item">
                 <a href="{{ route('register') }}" class="nav-link">Регистрация</a>
             </li>
+            @endif
             <li class="nav-item">
                 <a href="{{ route('login') }}" class="nav-link">Вход</a>
             </li>
