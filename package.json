@@ -12,9 +12,11 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.6",
+        "@vitejs/plugin-vue": "^4.6.2",
         "add": "^2.0.6",
         "admin-lte": "^3.2",
         "bootstrap": "4.6",
-        "jquery": "^3.5.1"
+        "jquery": "^3.5.1",
+        "vue": "^3.4.19"
     }
 }

@@ -75,9 +75,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('contact', Controllers\ContactController::class)
             ->parameters(['contact' => 'id'])
             ->only(['store', 'destroy']);
-        Route::resource('appointments', Controllers\AppointmentController::class)
-            ->parameters(['appointments' => 'id'])
-            ->only(['index', 'show', 'update']);
 
         Route::prefix('vacancies/')->group(function () {
             Route::post('{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
@@ -91,8 +88,15 @@ Route::middleware('auth')->group(function () {
             ->parameters(['vacancies' => 'id'])
             ->only(['index', 'show', 'create', 'store', 'update']);
 
-        Route::put('appointments/status-change', [Controllers\AppointmentController::class, 'changeStatus'])
-            ->name('appointments.status-change');
+        Route::prefix('appointments/')->group(function () {
+            Route::put('status-change', [Controllers\AppointmentController::class, 'changeStatus'])
+                ->name('appointments.status-change');
+            Route::get('calendar', [Controllers\AppointmentController::class, 'calendar'])
+                ->name('appointments.calendar');
+        });
+        Route::resource('appointments', Controllers\AppointmentController::class)
+            ->parameters(['appointments' => 'id'])
+            ->only(['index', 'show', 'update']);
 
         Route::get('feed-back', [Controllers\FeedBackController::class, 'create'])->name('feed-back.create');
         Route::post('feed-back', [Controllers\FeedBackController::class, 'store'])->name('feed-back.store');

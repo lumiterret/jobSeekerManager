@@ -76,6 +76,14 @@ class AppointmentController extends Controller
     }
 
     /**
+     * Display the calendar view.
+     */
+    public function calendar()
+    {
+        return view('appointments.calendar');
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(StoreRequest $request, $id)
