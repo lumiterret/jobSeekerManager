@@ -17,6 +17,7 @@
         "admin-lte": "^3.2",
         "bootstrap": "4.6",
         "jquery": "^3.5.1",
-        "vue": "^3.4.19"
+        "vue": "^3.4.19",
+        "vue-simple-calendar": "^7.1.0"
     }
 }
