@@ -6,6 +6,7 @@ use App\Http\Requests\Appointment\StoreRequest;
 use App\Http\Requests\Appointment\UpdateRequest;
 use App\Models\Appointment;
 use App\Models\Vacancy;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\BinaryOp\SmallerOrEqual;
 
@@ -18,7 +19,7 @@ class AppointmentController extends Controller
     {
         $appointment = new Appointment();
         $query = $appointment->query()
-            ->orderBy('date');
+            ->orderBy('date', 'desc');
 
         if (user()->is_admin === false) {
             $query->where('user_id', user()->id);
@@ -73,6 +74,39 @@ class AppointmentController extends Controller
         $this->authorize('view', $appointment);
 
         return view('appointments.show', compact('appointment'));
+    }
+
+    /**
+     * Display the calendar view.
+     */
+    public function calendar()
+    {
+        return view('appointments.calendar');
+    }
+
+    /**
+     * Display the calendar view.
+     */
+    public function events(Request $request)
+    {
+        $dates = $request->input();
+        $start = Carbon::parse($dates['periodStart']);
+        $end = Carbon::parse($dates['periodEnd']);
+        $appointments = Appointment::query()
+            ->where('user_id', user()->id)
+            ->whereBetween('date',[$start,$end])
+            ->get();
+        $result = [];
+
+        foreach ($appointments as $appointment) {
+            $result[] = [
+                'id' => $appointment->id,
+                'startDate' => $appointment->date,
+                'title' => $appointment->vacancy->employer->title . ' - ' . $appointment->title,
+            ];
+        }
+
+        return response()->json($result);
     }
 
     /**
