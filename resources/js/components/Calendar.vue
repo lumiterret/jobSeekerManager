@@ -11,6 +11,7 @@
         :display-period-count="displayPeriodCount"
         :starting-day-of-week="startingDayOfWeek"
         :enable-date-selection="true"
+        :periodChangedCallback="reload"
         @click-date="onClickDay"
         @click-item="onClickItem"
     >
@@ -23,10 +24,10 @@
 
 <script>
 import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
-
 import "vue-simple-calendar/dist/style.css"
-// The next two lines are optional themes
 import "vue-simple-calendar/dist/css/default.css"
+import moment from "moment-timezone"
+
 export default {
     name: "Calendar",
 
@@ -40,21 +41,7 @@ export default {
             displayPeriodUom: "month",
             displayPeriodCount: 1,
             locale: "Ru",
-            items: [
-                {
-                    id: "34",
-                    startDate: this.thisMonth(20),
-                    title: "Собеседование",
-                    classes: "o",
-                    url: "https://en.wikipedia.org/wiki/Birthday",
-                },
-                {
-                    id: "56",
-                    startDate: this.thisMonth(29),
-                    title: "Same day 2",
-                    class: "g",
-                },
-            ]
+            items: []
         }
     },
     components: {
@@ -84,12 +71,23 @@ export default {
         },
         onClickDay(d) {
             console.log(`You clicked day: ${d.toLocaleDateString()}`);
-            this.message = `You clicked day: ${d.toLocaleDateString()}`
         },
         onClickItem(e) {
-            console.log(`You clicked event: ${e.title}`);
-            console.log(this.thisMonth(20));
-            this.message = `You clicked event: ${e.title}`
+            window.location.href = '/appointments/'+ e.id;
+        },
+        async reload(e) {
+            console.log(e.value);
+            const params = {
+                periodStart: e.value.periodStart.value,
+                periodEnd: e.value.periodEnd.value
+            },
+            config = {
+                params
+            }
+
+            this.items = await axios.get(`/appointments/events`, config).then(response => {
+                return response.data;
+            });
         },
     }
 }

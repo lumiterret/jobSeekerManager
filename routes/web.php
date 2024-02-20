@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
                 ->name('appointments.status-change');
             Route::get('calendar', [Controllers\AppointmentController::class, 'calendar'])
                 ->name('appointments.calendar');
+            Route::get('events', [Controllers\AppointmentController::class, 'events']);
         });
         Route::resource('appointments', Controllers\AppointmentController::class)
             ->parameters(['appointments' => 'id'])
