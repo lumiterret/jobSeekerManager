@@ -36,6 +36,11 @@ class Vacancy extends Model
         return $this->hasMany(Appointment::class)->orderByDesc('date');
     }
 
+    public function lastAppointment()
+    {
+        return $this->hasMany(Appointment::class)->orderByDesc('date')->first();
+    }
+
     public function statuses()
     {
         return [
