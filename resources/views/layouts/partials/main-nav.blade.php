@@ -90,6 +90,12 @@
                             Список
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('appointments.calendar') }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            Календарь
+                        </a>
+                    </li>
                 </ul>
             </li>
             @if(user()->is_admin)
