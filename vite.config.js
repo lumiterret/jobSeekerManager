@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from "@vitejs/plugin-vue";
 
@@ -13,7 +13,11 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        splitVendorChunkPlugin(),
     ],
+    build: {
+        chunkSizeWarningLimit: 4096,
+    },
     resolve: {
         alias: {
             'vue': 'vue/dist/vue.esm-bundler.js'
