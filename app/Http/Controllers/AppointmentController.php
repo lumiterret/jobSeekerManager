@@ -103,10 +103,22 @@ class AppointmentController extends Controller
                 'id' => $appointment->id,
                 'startDate' => $appointment->date,
                 'title' => $appointment->vacancy->employer->title . ' - ' . $appointment->title,
+                'classes' => [$this->getClasses($appointment->status)],
             ];
         }
 
         return response()->json($result);
+    }
+
+    private function getClasses(string $status) {
+        switch ($status) {
+            case 'appointed':
+                return 'bg-warning';
+            case 'expired':
+                return 'bg-danger';
+            case 'done':
+                return 'bg-success';
+        }
     }
 
     /**
