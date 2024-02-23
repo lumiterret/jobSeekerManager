@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Appointment\StoreRequest;
-use App\Http\Requests\Appointment\UpdateRequest;
 use App\Models\Appointment;
 use App\Models\Vacancy;
+use App\Services\Appointment\Http\AppointmentIndexFilters;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\BinaryOp\SmallerOrEqual;
 
 class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(AppointmentIndexFilters $filters)
     {
         $appointment = new Appointment();
         $query = $appointment->query()
@@ -29,8 +28,8 @@ class AppointmentController extends Controller
 
         $status = [Appointment::STATUS_APPOINTED];
 
-        if ($request->get('status')) {
-            $status = array_merge($request->get('status'));
+        if (!empty($filters->status)) {
+            $status = array_merge($filters->status);
         }
 
         $query->whereIn('status', $status);
