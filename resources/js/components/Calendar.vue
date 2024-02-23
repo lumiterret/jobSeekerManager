@@ -76,9 +76,10 @@ export default {
             window.location.href = '/appointments/'+ e.id;
         },
         async reload(e) {
+            console.log(e.value)
             const params = {
-                periodStart: e.value.periodStart.value,
-                periodEnd: e.value.periodEnd.value
+                periodStart: e.value.displayFirstDate.value,
+                periodEnd: e.value.displayLastDate.value
             },
             config = {
                 params
