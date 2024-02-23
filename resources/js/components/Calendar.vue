@@ -70,13 +70,12 @@ export default {
             return new Date(t.getFullYear(), t.getMonth(), d, h || 0, m || 0)
         },
         onClickDay(d) {
-            console.log(`You clicked day: ${d.toLocaleDateString()}`);
+            // console.log(`You clicked day: ${d.toLocaleDateString()}`);
         },
         onClickItem(e) {
             window.location.href = '/appointments/'+ e.id;
         },
         async reload(e) {
-            console.log(e.value);
             const params = {
                 periodStart: e.value.periodStart.value,
                 periodEnd: e.value.periodEnd.value
