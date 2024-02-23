@@ -83,7 +83,6 @@
         textarea.addEventListener('input', onInput)
 
         function onInput(event) {
-            console.log(event);
             event.target.value = event.target.value.slice(0, maxlength); // обрезаем текст до 4000 символов
             counter.textContent = event.target.value.length;
         }
