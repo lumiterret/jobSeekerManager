@@ -16,7 +16,7 @@
         </div>
         <div class="col-sm-4">
             <div class="form-group mb-3">
-                <label class="col-form-label-sm" for="status">Статус</label>
+                <label class="col-form-label-sm" for="status">Компания</label>
                 <div>
                     <select
                         class="form-control"
