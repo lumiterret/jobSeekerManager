@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Appointment\StoreRequest;
 use App\Models\Appointment;
+use App\Models\Employer;
 use App\Models\Vacancy;
 use App\Services\Appointment\Http\AppointmentIndexFilters;
 use Carbon\Carbon;
@@ -24,15 +25,21 @@ class AppointmentController extends Controller
             $query->where('user_id', user()->id);
         }
 
-        $statuses = $appointment->statuses();
-
         $status = [Appointment::STATUS_APPOINTED];
 
         if (!empty($filters->status)) {
             $status = array_merge($filters->status);
         }
 
+        if ($filters->employer) {
+            $employer = Employer::find($filters->employer);
+            $vacanciesIds = $employer->vacancies->pluck('id');
+            $query->whereIn('vacancy_id', $vacanciesIds);
+        }
+
         $query->whereIn('status', $status);
+
+        $statuses = $appointment->statuses();
         $appointments = $query->paginate(10);
 
         return view(

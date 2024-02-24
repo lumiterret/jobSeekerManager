@@ -34,8 +34,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col col-sm-3">
+                <div class="row w-100">
+                    <div class="col">
                         @include('appointments.includes.index-filters')
                     </div>
                 </div>
@@ -61,11 +61,4 @@
         </div>
     </section>
 
-    <script>
-        window.addEventListener("load", function() {
-            $('#status').select2({
-                placeholder: 'Статус назначения'
-            });
-        })
-    </script>
 @endsection

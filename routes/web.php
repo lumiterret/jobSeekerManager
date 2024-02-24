@@ -45,11 +45,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/email/verify', [Controllers\Auth\EmailVerificationPromptController::class, '__invoke'])
         ->name('verification.notice');
-
     Route::get('/email/verify/{id}/{hash}', [Controllers\Auth\VerifyEmailController::class, '__invoke'])
         ->middleware('signed')
         ->name('verification.verify');
-
     Route::post('/email/verification-notification', [Controllers\Auth\EmailVerificationNotificationController::class, '__invoke'])
         ->name('verification.send');
 
@@ -66,9 +64,6 @@ Route::middleware('auth')->group(function () {
             ->name('cron-jobs.execute');
         });
 
-        Route::resource('employers', Controllers\EmployerController::class)
-            ->parameters(['employers' => 'id'])
-            ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
         Route::resource('people', Controllers\PersonController::class)
             ->parameters(['people' => 'id'])
             ->only(['index', 'show', 'create', 'store', 'update']);
@@ -87,6 +82,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('vacancies', Controllers\VacancyController::class)
             ->parameters(['vacancies' => 'id'])
             ->only(['index', 'show', 'create', 'store', 'update']);
+
+        Route::prefix('employers/')->group(function () {
+            Route::get('search', [Controllers\EmployerController::class, 'search']);
+        });
+        Route::resource('employers', Controllers\EmployerController::class)
+            ->parameters(['employers' => 'id'])
+            ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
 
         Route::prefix('appointments/')->group(function () {
             Route::put('status-change', [Controllers\AppointmentController::class, 'changeStatus'])

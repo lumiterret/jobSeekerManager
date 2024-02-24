@@ -13,7 +13,7 @@ class AppointmentIndexFilters
     {
         $filters = [
             'status' => $request->get('status'),
-            'employer' => strtolower($request->get('employer')),
+            'employer' => strtolower($request->get('employer_id')),
         ];
         $this->fromArray($filters);
     }
