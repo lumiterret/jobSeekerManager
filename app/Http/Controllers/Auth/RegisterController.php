@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +27,7 @@ class RegisterController extends Controller
             'check-bot' => ['nullable'],
         ]);
 
-        if($validated['check-bot']) {
+        if(Arr::exists($validated,'check-bot')) {
             return redirect(RouteServiceProvider::HOME);
         }
         $user = User::create([
