@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="col-12 col-md-12 col-lg-4">
                                             {{-- Статус --}}
-                                            @include('appointments.status-form')
+                                            @include('appointments.includes.status-form')
                                         </div>
                                     </div>
                                 </div>{{-- /.tab-pane Описание Назначения--}}
@@ -81,7 +81,7 @@
                                         @csrf
                                         @method('put')
                                         <input type="hidden" name="vacancy_id" value="{{ $appointment->vacancy->id }}">
-                                        @include('appointments.form-fields')
+                                        @include('appointments.includes.form-fields')
                                     </form>
                                 </div>{{-- /.tab-pane --}}
                             </div>{{-- /.tab-content --}}
