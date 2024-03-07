@@ -10,9 +10,6 @@
             <div class="row">
                 <div class="col">
                     <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button type="submit" class="btn btn-primary">Обновить</button>
-                        </div>
                         <select
                             name="status"
                             required="required"
@@ -27,6 +24,9 @@
                                 </option>
                             @endforeach
                         </select>
+                        <div class="input-group-prepend">
+                            <button type="submit" class="btn btn-primary">Обновить</button>
+                        </div>
                     </div>
                 </div>
             </div>
