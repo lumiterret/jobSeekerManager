@@ -91,4 +91,22 @@ class EmployerController extends Controller
         $employer->update($data);
         return redirect()->route('employers.show', [$employer->id]);
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('searchTerm');
+        $query = Employer::query();
+        if (user()->is_admin === false) {
+            $query->where('user_id', user()->id);
+        }
+
+        $employers = $query->where('title', 'like', '%' . $searchTerm . '%')->get();
+
+        $result = [];
+        foreach ($employers as $employer) {
+            $result[] = ['id' => $employer->id, 'text' => $employer->title];
+        }
+
+        return response()->json($result);
+    }
 }

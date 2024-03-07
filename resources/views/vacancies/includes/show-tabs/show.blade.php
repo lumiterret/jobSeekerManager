@@ -55,7 +55,7 @@
                         <form method="post" action="{{ route('vacancies.appointment-create') }}">
                             @csrf
                             <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
-                            @include('appointments.form-fields')
+                            @include('appointments.includes.form-fields')
                         </form>
                     </div>
                 </div> {{-- /Назначение --}}

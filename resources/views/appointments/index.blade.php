@@ -34,23 +34,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col col-sm-3">
-                        <form method="get" action="{{ route('appointments.index')}}">
-                            <div class="form-group mb-3">
-                                <label class="col-form-label-sm" for="status">Статус</label>
-                                <div>
-                                    <select class="form-control" id="status" name="status[]" multiple>
-                                        @foreach($statuses as $status)
-                                            <option value="{{ $status }}">
-                                                {{ __(ucfirst($status)) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn btn-success" type="submit">Поиск</button>
-                        </form>
+                <div class="row w-100">
+                    <div class="col">
+                        @include('appointments.includes.index-filters')
                     </div>
                 </div>
             </div>
@@ -75,11 +61,4 @@
         </div>
     </section>
 
-    <script>
-        window.addEventListener("load", function() {
-            $('#status').select2({
-                placeholder: 'Статус назначения'
-            });
-        })
-    </script>
 @endsection
