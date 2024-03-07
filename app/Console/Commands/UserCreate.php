@@ -37,9 +37,13 @@ class UserCreate extends Command
             $password =$this->validate_ask('Enter user password', ['string|min:6']);
         }
 
+        $email = $this->validate_ask('Enter email', ['email']);
+
         $user = new User();
         $user->username = $username;
         $user->password = bcrypt($password);
+        $user->email = $email;
+        $user->email_verified_at = now();
         $user->save();
 
         $this->info('User created');
