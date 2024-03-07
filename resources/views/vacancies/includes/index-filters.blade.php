@@ -1,6 +1,6 @@
 <form method="get" action="{{ route('vacancies.index')}}">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <div class="form-group mb-3">
                 <label class="col-form-label-sm" for="status">Статус</label>
                 <select class="form-control" id="status" name="status[]" multiple>
@@ -12,13 +12,13 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <div class="form-group mb-3">
                 <label class="col-form-label-sm" for="employer">Компания</label>
                 <input type="text" class="form-control" id="employer" placeholder="Employer" name="employer">
             </div>
         </div>
-        <div class="col-sm-2 text-center">
+        <div class="col-sm-4 text-center">
             <div class="form-group mx-auto">
                 <label class="col-form-label-sm" for="is_favorite">Избранное</label>
                 <select class="form-control" id="is_favorite" name="is_favorite">

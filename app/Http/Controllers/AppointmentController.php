@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Appointment\StoreRequest;
-use App\Http\Requests\Appointment\UpdateRequest;
 use App\Models\Appointment;
+use App\Models\Employer;
 use App\Models\Vacancy;
+use App\Services\Appointment\Http\AppointmentIndexFilters;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\BinaryOp\SmallerOrEqual;
 
 class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(AppointmentIndexFilters $filters)
     {
         $appointment = new Appointment();
         $query = $appointment->query()
@@ -25,15 +25,21 @@ class AppointmentController extends Controller
             $query->where('user_id', user()->id);
         }
 
-        $statuses = $appointment->statuses();
-
         $status = [Appointment::STATUS_APPOINTED];
 
-        if ($request->get('status')) {
-            $status = array_merge($request->get('status'));
+        if (!empty($filters->status)) {
+            $status = array_merge($filters->status);
+        }
+
+        if ($filters->employer) {
+            $employer = Employer::find($filters->employer);
+            $vacanciesIds = $employer->vacancies->pluck('id');
+            $query->whereIn('vacancy_id', $vacanciesIds);
         }
 
         $query->whereIn('status', $status);
+
+        $statuses = $appointment->statuses();
         $appointments = $query->paginate(10);
 
         return view(
@@ -103,10 +109,22 @@ class AppointmentController extends Controller
                 'id' => $appointment->id,
                 'startDate' => $appointment->date,
                 'title' => $appointment->vacancy->employer->title . ' - ' . $appointment->title,
+                'classes' => [$this->getClasses($appointment->status)],
             ];
         }
 
         return response()->json($result);
+    }
+
+    private function getClasses(string $status) {
+        switch ($status) {
+            case 'appointed':
+                return 'bg-warning';
+            case 'expired':
+                return 'bg-danger';
+            case 'done':
+                return 'bg-success';
+        }
     }
 
     /**
