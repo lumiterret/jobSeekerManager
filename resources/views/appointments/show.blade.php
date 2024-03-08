@@ -45,7 +45,6 @@
                                 <x-appointments.status-badge :status="$appointment['status']"/>
                             </h3>
                             <div class="card-tools">
-
                                 <span class="aptime">
                                     <i class="fas fa-clock"></i>
                                     {{ $appointment->date->format('d-m-Y H:i') }}
