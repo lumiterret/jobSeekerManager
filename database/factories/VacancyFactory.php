@@ -28,10 +28,13 @@ class VacancyFactory extends Factory
             $description .= PHP_EOL . $this->faker->paragraph(random_int(2, 6)) . PHP_EOL;
         }
 
+        $employer = Employer::all()->random();
+
         return [
             'title' => $this->faker->sentence(3),
             'description' => $description,
-            'employer_id' => Employer::all()->random()->id,
+            'employer_id' => $employer->id,
+            'user_id' => $employer->user_id,
             'created_at' => $this->faker->dateTimeBetween('-1month', 'now'),
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class PersonFactory extends Factory
             'f_name' => $this->faker->firstName(),
             'l_name' => $this->faker->lastName(),
             'position' => $this->faker->jobTitle(),
+            'user_id' => User::all()->random()->id,
         ];
     }
 }
