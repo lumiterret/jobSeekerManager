@@ -74,7 +74,7 @@
             </div>
         </div>
     </section>
-    <script>
+    <script type="text/javascript">
         window.addEventListener("load", function() {
             $("#toggle-button").click(function() {
                 $("#add-info").toggleClass('d-none');

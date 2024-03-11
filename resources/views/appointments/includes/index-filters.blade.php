@@ -31,7 +31,7 @@
 
     <button class="btn btn-success" type="submit">Поиск</button>
 </form>
-<script>
+<script type="text/javascript">
     window.addEventListener("load", function() {
         $('#status').select2({
             placeholder: 'Статус назначения',

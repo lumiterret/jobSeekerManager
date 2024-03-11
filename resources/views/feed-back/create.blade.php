@@ -73,7 +73,7 @@
         </div>
     </section>
 
-    <script>
+    <script type="text/javascript">
 
         // счётчик символов в текстовом поле
         const textarea = document.querySelector('textarea.feedback');

@@ -39,7 +39,7 @@
                     <form action="{{ route('cron-jobs.update', [$cronJob->id]) }}" method="post">
                         @include('cron-jobs.includes.form-fields')
                     </form>
-                    <script>
+                    <script type="text/javascript">
                         window.addEventListener("load", function() {
                             $("#toggle-button").click(function() {
                                 $("#command").removeAttr('disabled');
