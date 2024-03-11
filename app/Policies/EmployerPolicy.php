@@ -21,7 +21,7 @@ class EmployerPolicy
      */
     public function view(User $user, Employer $employer): bool
     {
-        return true;
+        return $user->is_admin || $user->id === $employer->user_id;
     }
 
     /**

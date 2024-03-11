@@ -150,7 +150,7 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     window.addEventListener("load", function() {
         $('#people').select2({
             placeholder: 'Контактные лица'

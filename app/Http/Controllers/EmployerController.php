@@ -6,6 +6,7 @@ use App\Http\Requests\Employer\StoreRequest;
 use App\Models\Employer;
 use App\Services\Employer\Http\EmployerIndexFilters;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class EmployerController extends Controller
 {
@@ -14,14 +15,13 @@ class EmployerController extends Controller
      */
     public function index(EmployerIndexFilters $filters)
     {
-        $query = Employer::query();
+        $employers = Employer::when(!user()->is_admin, function ($search) {
+            return $search->where('user_id', user()->id);
+        })
+            ->when($filters->employer_id, function ($search) use ($filters) {
+                return $search->where('id', $filters->employer_id);
+            })->paginate(config('app.pagination'));
 
-        if ($filters->employer) {
-            $employer = '%' . $filters->employer . '%';
-            $query->where('title', 'LIKE', $employer);
-        }
-
-        $employers = $query->paginate(8);
         foreach ($employers as $employer) {
             $employer->activeVacancies = 'active';
             if (
@@ -33,6 +33,7 @@ class EmployerController extends Controller
                 $employer->activeVacancies = 'no active';
             }
         }
+
         return view('employers.index', compact('employers'));
     }
 
@@ -50,9 +51,11 @@ class EmployerController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $employer = new Employer($data);
-        $employer->user_id = user()->id;
+        $employer = new Employer();
+        $this->fillEmployer($employer, $data);
+
         $employer->save();
+
         return redirect()->route('employers.show', [$employer->id]);
     }
 
@@ -62,6 +65,7 @@ class EmployerController extends Controller
     public function show($id)
     {
         $employer = Employer::findOrFail($id);
+
         return  view('employers.show', compact('employer'));
     }
 
@@ -88,7 +92,9 @@ class EmployerController extends Controller
 
         $this->authorize('update', $employer);
 
-        $employer->update($data);
+        $this->fillEmployer($employer, $data);
+        $employer->save();
+
         return redirect()->route('employers.show', [$employer->id]);
     }
 
@@ -108,5 +114,14 @@ class EmployerController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    private function fillEmployer(Employer$employer, array $data)
+    {
+        if (!$employer->id) {
+            $employer->user_id = user()->id;
+        }
+        $employer->title = $data['title'];
+        $employer->description = $data['description'];
     }
 }

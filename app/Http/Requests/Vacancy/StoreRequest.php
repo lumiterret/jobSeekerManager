@@ -24,8 +24,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:6',
-            'description' => 'required|min:20|max:65535',
+            'title' => 'required|min:2',
+            'description' => 'required|max:65535',
             'is_favorite' => 'nullable|boolean',
             'employer_id' => ['required', Rule::exists(Employer::class, 'id')]
         ];
