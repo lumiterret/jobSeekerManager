@@ -36,7 +36,7 @@ class StoreRequest extends FormRequest
         ];
         return [
             'title' => $title,
-            'description' => 'required|min:10|max:65535'
+            'description' => 'nullable|max:65535'
         ];
     }
 

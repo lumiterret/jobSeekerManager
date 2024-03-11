@@ -37,9 +37,6 @@
                 <form method="post" action="{{ route('employers.store') }}">
                     @include('employers.includes.form-fields')
                 </form>
-                <script type="text/javascript">
-
-                </script>
             </div>
         </div>
     </section>
