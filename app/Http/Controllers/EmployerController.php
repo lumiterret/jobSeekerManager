@@ -14,14 +14,13 @@ class EmployerController extends Controller
      */
     public function index(EmployerIndexFilters $filters)
     {
-        $query = Employer::query();
+        $employers = Employer::when(!user()->is_admin, function ($search) {
+            return $search->where('user_id', user()->id);
+        })
+            ->when($filters->employer_id, function ($search) use ($filters) {
+                return $search->where('id', $filters->employer_id);
+            })->paginate(config('app.pagination'));
 
-        if ($filters->employer) {
-            $employer = '%' . $filters->employer . '%';
-            $query->where('title', 'LIKE', $employer);
-        }
-
-        $employers = $query->paginate(8);
         foreach ($employers as $employer) {
             $employer->activeVacancies = 'active';
             if (

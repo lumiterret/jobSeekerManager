@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 class EmployerIndexFilters
 {
-    public ?string $employer = null;
+    public ?string $employer_id = null;
 
     public function __construct(Request $request)
     {
         $filters = [
-            'employer' => $request->get('employer-title'),
+            'employer_id' => $request->get('employer_id'),
         ];
         $this->fromArray($filters);
     }
