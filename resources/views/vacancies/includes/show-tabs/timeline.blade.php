@@ -12,7 +12,7 @@
                 {{-- /.timeline-label --}}
                 {{-- timeline item --}}
                 <div>
-                    <i class="fas fa-handshake bg-primary"></i> {{-- Иконка типа назначения цвет зависит от статуса --}}
+                    <x-appointments.timline-icon :status="$appointment->status"/> {{-- Иконка типа назначения цвет зависит от статуса --}}
 
                     <div class="timeline-item">
                         <span class="time"><i class="far fa-clock"></i> {{$appointment->date->format(' H:i')}}</span> {{-- Время назначения --}}
@@ -43,7 +43,7 @@
             {{-- /.timeline-label --}}
             {{-- timeline item --}}
             <div>
-                <i class="fas fa-handshake bg-secondary"></i> {{-- Иконка типа назначения цвет зависит от статуса --}}
+                <i class="fas fa-handshake bg-secondary"></i>
 
                 <div class="timeline-item">
                     <span class="time"><i class="far fa-clock"></i> --:--</span> {{-- Время назначения --}}
