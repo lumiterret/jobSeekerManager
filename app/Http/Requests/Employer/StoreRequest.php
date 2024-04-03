@@ -32,7 +32,6 @@ class StoreRequest extends FormRequest
         $title = [
             'required',
             'min:2',
-            Rule::unique('employers')->ignore($id),
         ];
         return [
             'title' => $title,
