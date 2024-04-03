@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+    nginx:
+        build:
+            context: ./docker
+            dockerfile: nginx.docker
+        volumes:
+            - ./:/app
+        depends_on:
+            - php-fpm
+        ports:
+            - '8000:8000'
+
+    php-fpm:
+        build:
+            context: ./docker
+            dockerfile: php-fpm.docker
+        volumes:
+            - ./:/app
+
+    php-cli:
+        build:
+            context: ./docker
+            dockerfile: php-cli.docker
+        volumes:
+            - ./:/app
+            - composer:/root/.composer/cache
+
+    mysql:
+        image: mariadb:10.4
+        ports:
+            - '3366:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: app
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+        volumes:
+            - ./db/mariadb:/var/lib/mysql
+
+
+    adminer:
+        image: adminer
+        ports:
+            - '8880:8080'
+        environment:
+            ADMINER_DEFAULT_SERVER: mysql
+
+volumes:
+    composer:
