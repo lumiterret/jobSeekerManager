@@ -71,4 +71,24 @@ class PersonController extends Controller
         $person->update($data);
         return redirect()->route('people.show', [$person->id]);
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('searchTerm');
+
+        $people = Person::when(!user()->is_admin, function ($search) {
+            return $search->where('user_id', user()->id);
+        })
+            ->when($searchTerm, function ($search) use ($searchTerm) {
+                return $search->where('f_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('l_name', 'LIKE', '%' . $searchTerm . '%');
+            })->get();
+
+        $result = [];
+
+        foreach ($people as $person) {
+            $result[] = ['id' => $person->id, 'text' => $person->full_name];
+        }
+        return response()->json($result);
+    }
 }

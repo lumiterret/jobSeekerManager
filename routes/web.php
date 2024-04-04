@@ -64,13 +64,6 @@ Route::middleware('auth')->group(function () {
             ->name('cron-jobs.execute');
         });
 
-        Route::resource('people', Controllers\PersonController::class)
-            ->parameters(['people' => 'id'])
-            ->only(['index', 'show', 'create', 'store', 'update']);
-        Route::resource('contact', Controllers\ContactController::class)
-            ->parameters(['contact' => 'id'])
-            ->only(['store', 'destroy']);
-
         Route::prefix('vacancies/')->group(function () {
             Route::post('{vacancies}/add-contacts', [Controllers\VacancyController::class, 'assignPeople'])
                 ->name('vacancies.assign-people');
@@ -89,6 +82,16 @@ Route::middleware('auth')->group(function () {
         Route::resource('employers', Controllers\EmployerController::class)
             ->parameters(['employers' => 'id'])
             ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+
+        Route::prefix('people/')->group(function () {
+            Route::get('search', [Controllers\PersonController::class, 'search']);
+        });
+        Route::resource('people', Controllers\PersonController::class)
+            ->parameters(['people' => 'id'])
+            ->only(['index', 'show', 'create', 'store', 'update']);
+        Route::resource('contact', Controllers\ContactController::class)
+            ->parameters(['contact' => 'id'])
+            ->only(['store', 'destroy']);
 
         Route::prefix('appointments/')->group(function () {
             Route::put('status-change', [Controllers\AppointmentController::class, 'changeStatus'])
