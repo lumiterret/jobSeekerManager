@@ -48,11 +48,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#timeline" data-toggle="tab">
-                                        Назначения
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="#vacancy-edit" data-toggle="tab">
                                         Редактировать
                                     </a>
@@ -65,10 +60,6 @@
                                     {{-- Просмотр --}}
                                     @include('vacancies.includes.show-tabs.show')
                                 </div>{{-- /.tab-pane Просмотр --}}
-                                <div class="tab-pane" id="timeline">
-                                    {{-- События --}}
-                                    @include('vacancies.includes.show-tabs.timeline')
-                                </div>{{-- /.tab-pane События--}}
                                 <div class="tab-pane" id="vacancy-edit">
                                     {{-- Редактирование --}}
                                     @include('vacancies.includes.show-tabs.edit')

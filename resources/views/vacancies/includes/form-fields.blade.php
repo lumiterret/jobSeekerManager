@@ -95,7 +95,7 @@
 </div>
 @endif
 
-<script>
+<script type="text/javascript">
     window.addEventListener("load", function() {
         $('#employer').select2({
             placeholder: 'Название компании',

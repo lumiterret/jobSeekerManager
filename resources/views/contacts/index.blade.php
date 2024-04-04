@@ -3,7 +3,7 @@
         @foreach($person->contacts as $contact)
             @switch($contact->type)
                 @case('phone')
-                    <li class="list-group-item">
+                    <li class="list-group-item px-2">
                         <div class="row">
                             <div class="col-4">
                                 <b>{{ $contact->type }}:</b>
@@ -20,7 +20,7 @@
                     </li>
                     @break
                 @case('email')
-                    <li class="list-group-item">
+                    <li class="list-group-item px-2">
                         <div class="row">
                             <div class="col-4">
                                 <b>{{ $contact->type }}:</b>
@@ -37,7 +37,7 @@
                     </li>
                     @break
                 @case('whatsapp')
-                    <li class="list-group-item">
+                    <li class="list-group-item px-2">
                         <div class="row">
                             <div class="col-4">
                                 <b>{{ $contact->type }}:</b>
@@ -55,7 +55,7 @@
                     </li>
                     @break
                 @case('telegram')
-                    <li class="list-group-item">
+                    <li class="list-group-item px-2">
                         <div class="row">
                             <div class="col-4">
                                 <b>{{ $contact->type }}:</b>
@@ -75,7 +75,7 @@
                     </li>
                     @break
                 @case('url')
-                    <li class="list-group-item">
+                    <li class="list-group-item px-2">
                         <div class="row">
                             <div class="col-4">
                                 <b>{{ $contact->type }}:</b>

@@ -40,7 +40,7 @@
                             <div class="col-12">
                                 <h4>Описание</h4>
                                 <div class="post" style="height: 80%">
-                                    @markdown{{ $employer->description }}@endmarkdown
+                                    @markdown{{ $employer->description ?? 'Описание не добавленно' }}@endmarkdown
                                 </div>
                             </div>
                         </div>

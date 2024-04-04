@@ -20,7 +20,7 @@
                 <div>
                     <select
                         class="form-control"
-                        id="employer"
+                        id="employer-search"
                         name="employer_id"
                     >
                     </select>
@@ -31,29 +31,12 @@
 
     <button class="btn btn-success" type="submit">Поиск</button>
 </form>
-<script>
+<script type="text/javascript">
     window.addEventListener("load", function() {
         $('#status').select2({
             placeholder: 'Статус назначения',
             width: '100%'
         });
-        $('#employer').select2({
-            ajax: {
-                url: '/employers/search',
-                dataType: 'json',
-                type: "get",
-                data: function (params) {
-                    return {
-                        searchTerm: params.term
-                    };
-                },
-                processResults: function (data) {
-                    return { results: data };
-                }
-            },
-            minimumInputLength: 3,
-            placeholder: 'Название компании',
-            width: '100%'
-        });
     })
 </script>
+@vite(['resources/js/filters/employersFilter.js'])
